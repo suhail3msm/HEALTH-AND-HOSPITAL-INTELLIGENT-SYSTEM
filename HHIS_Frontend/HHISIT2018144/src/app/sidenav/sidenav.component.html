@@ -1,0 +1,15 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <h1 style="color: white;letter-spacing: 20px;">HHIS</h1>
+  </div>
+  <mat-divider></mat-divider>
+<br>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/dashboard">
+    <mat-icon>dashboard</mat-icon> Dashboard
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/staff"> <mat-icon>person_add</mat-icon> Staff </a>
+  <a mat-list-item> <mat-icon>edit</mat-icon> Link 5 </a>
+  <a mat-list-item> <mat-icon>edit</mat-icon> Link 6 </a>
+  <a mat-list-item (click)=logout()> <mat-icon>logout</mat-icon> Logout </a>
+</mat-nav-list>
