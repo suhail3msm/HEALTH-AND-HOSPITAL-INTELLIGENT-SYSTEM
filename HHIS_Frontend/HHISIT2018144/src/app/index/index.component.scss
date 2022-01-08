@@ -1,0 +1,97 @@
+
+.i_section{
+    width: 100%;
+    overflow: hidden;
+}
+.i_first{
+    background-image: linear-gradient(to left, rgb(0, 139, 253),
+    rgb(0, 84, 194));
+    height: 100vh;
+}
+
+
+.heartgif{
+    bottom: 0px;
+    position: fixed;
+    right: 0;
+    margin: 10px;
+}
+.heartgif img{
+    width: 20px;
+    height: 20px;
+}
+.hos_img{
+    position:absolute;
+    bottom: 10%;
+    margin-left: 60px;
+}
+.hos_img img{
+    width:75vh;
+    height: 70vh;
+}
+.login{
+    position: absolute;
+    margin: 10px;
+    right: 15px;
+    margin: 10px;
+
+}
+.login button{
+    background-color: rgb(0, 139, 253);
+}
+
+.box{
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%,-50%);
+}
+.box .bx{
+    margin: 10px;
+    background-color: crimson;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+
+.form1{
+	background-color: #FFFFFF;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+.form1 button {
+	border-radius: 20px;
+	border: 1px solid #1368d6;
+	background-color: #1368d6;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+.form1 input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+.form1 a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+.form1 button:hover {
+	cursor: pointer;
+}
