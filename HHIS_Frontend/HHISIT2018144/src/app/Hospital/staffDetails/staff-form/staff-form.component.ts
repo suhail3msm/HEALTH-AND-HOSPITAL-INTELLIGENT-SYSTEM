@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HhisServiceService } from '../services/hhis-service.service';
+import { HhisServiceService } from '../../../services/hhis-service.service';
+import { StaffService } from '../../../services/staff.service';
 
 
 export class StaffModel{
@@ -27,17 +28,23 @@ username?:string;
 export class StaffFormComponent implements OnInit {
 
   dataStaff=this.hhisservice.staff;
- username=localStorage.getItem('username');
- hospitalId=localStorage.getItem('id');
 
-  constructor(private hhisservice:HhisServiceService) { }
+  constructor(private hhisservice:HhisServiceService, public service:StaffService) { }
   
   ngOnInit(): void {
-    console.log(this.hhisservice.staff);
+
   }
-  onSubmit(form:NgForm):void{
-    this.hhisservice.insert_staff(form.value).subscribe(res=>{
-      console.log(res);
-    })
+  onSubmit():void{
+    if(this.service.form.value.id > 0){
+      this.service.updateStaff(this.service.form.value).subscribe(res=>{
+        console.log(res);
+      });
+    }else{
+      this.service.insert_staff(this.service.form.value).subscribe(res=>{
+        console.log(res);
+      });
+    }
+  
   }
+  
 }

@@ -59,7 +59,7 @@
       </button>
 
       <button mat-icon-button  matTooltip="Delete">
-        <mat-icon color="warn">delete</mat-icon>
+        <mat-icon color="warn"(click)="onDelete(element)">delete</mat-icon>
       </button>
     </td>
   </ng-container>

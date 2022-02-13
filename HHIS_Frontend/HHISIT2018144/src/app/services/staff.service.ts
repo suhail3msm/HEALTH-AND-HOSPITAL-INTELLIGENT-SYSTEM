@@ -1,12 +1,15 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+const server_addr = "http://localhost:8082";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StaffService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   form: FormGroup = new FormGroup({
     id: new FormControl(null),
@@ -35,11 +38,41 @@ export class StaffService {
       nic:"",
       dob:"",
       joindDate:"",
-      hospitalId:"",
+      hospitalId:localStorage.getItem('id'),
       jobExpiance:"",
       staffRole:"",
-      username:""
+      username:localStorage.getItem('username')
     });
   }
 
+   //insert staff details
+   insert_staff(data:any){
+    let url = server_addr + '/saveStaffDetails';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.post(url,data,{headers, responseType: 'json' });
+  }
+
+  //Delete staff details
+  deleteStaffById(id:any){
+    let url = server_addr + '/deleteStaff/'+id;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.delete(url,{headers, responseType: 'json' });
+  }
+
+   //insert staff details
+   updateStaff(data:any){
+    let url = server_addr + '/updateStaff';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.put(url,data,{headers, responseType: 'json' });
+  }
+
+  populateForm(staff: any) {
+    this.form.setValue(staff);
+  }
 }

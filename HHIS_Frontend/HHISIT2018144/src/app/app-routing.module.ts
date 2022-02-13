@@ -5,7 +5,7 @@ import { AuthGuardGuard } from './auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
-import { StaffComponent } from './staff/staff.component';
+import { StaffComponent } from './Hospital/staffDetails/staff/staff.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },

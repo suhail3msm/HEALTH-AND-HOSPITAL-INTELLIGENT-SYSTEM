@@ -25,12 +25,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatDialogModule} from '@angular/material/dialog';
-import { StaffFormComponent } from './staff-form/staff-form.component';
+import { StaffFormComponent } from './Hospital/staffDetails/staff-form/staff-form.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HhisServiceService } from './services/hhis-service.service';
-import { StaffComponent } from './staff/staff.component';
+import { StaffComponent } from './Hospital/staffDetails/staff/staff.component';
 import { StaffService } from './services/staff.service';
 
 @NgModule({
