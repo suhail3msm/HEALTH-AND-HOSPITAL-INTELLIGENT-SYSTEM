@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AuthGuardGuard } from './auth-guard.guard';
-import { HhisServiceService } from './hhis-service.service';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -21,11 +20,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StaffComponent } from './staff/staff.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatDialogModule} from '@angular/material/dialog';
+import { StaffFormComponent } from './staff-form/staff-form.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { HhisServiceService } from './services/hhis-service.service';
+import { StaffComponent } from './staff/staff.component';
+import { StaffService } from './services/staff.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +42,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     DashboardComponent,
     SidenavComponent,
+    StaffFormComponent,
     StaffComponent,
   ],
   imports: [
@@ -46,6 +53,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
     FlexLayoutModule,
+    
     // * MATERIAL IMPORTS
     MatFormFieldModule,
     MatInputModule,
@@ -57,9 +65,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatListModule,
     MatPaginatorModule,
     MatTableModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     
   ],
-  providers: [HhisServiceService,AuthGuardGuard],
+  providers: [HhisServiceService,StaffService,AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

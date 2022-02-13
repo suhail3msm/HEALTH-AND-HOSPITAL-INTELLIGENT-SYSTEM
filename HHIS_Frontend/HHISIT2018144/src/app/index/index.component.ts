@@ -1,7 +1,7 @@
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HhisServiceService } from '../hhis-service.service';
+import { HhisServiceService } from '../services/hhis-service.service';
 
 @Component({
   selector: 'app-index',
@@ -49,7 +49,8 @@ export class IndexComponent implements OnInit {
 
 covidCases(){
   this.HHISservice.get_cases().subscribe((res:any)=>{
-    console.log(res.data.local_new_cases);
+    console.log(res.data);
+    this.response = res.data;
     
   })
 }

@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Create Staff</h2>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  #registerForm = "ngForm" name="staffForm" (submit)="onSubmit(registerForm)" >
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="fname" ngModel name="name" placeholder="Name" pattern="[A-Za-z]{3,}" #name="ngModel" required> 
+                <span class="help-block" *ngIf="!name.valid && name.touched">Please Enter Valid Name !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="address" ngModel name="address" placeholder="Address" #address="ngModel" required> 
+                <span class="help-block" *ngIf="!address.valid && address.touched">Please Enter Valid Address!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="email" ngModel name="email" placeholder="Email" #email="ngModel"  required email> 
+                <span class="help-block" *ngIf="!email.valid && email.touched">Please Enter Valid email!</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="phoneNo" ngModel name="phoneNo" placeholder="Mobile Number"  pattern="[0-9]{10}" #mob="ngModel" required > 
+                <span class="help-block" *ngIf="!mob.valid && mob.touched">Please Enter Valid Mobile Number !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  ngModel name="nic" placeholder="NIC"  pattern="[0-9A-Za-z]{10,}" #nic="ngModel" required> 
+                <span class="help-block" *ngIf="!nic.valid && nic.touched">Please Enter Valid NIC !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text"  ngModel name="jobExpiance" placeholder="job Experience" pattern="[0-9]{1,2}" #jobExperience="ngModel" required> 
+                <span class="help-block" *ngIf="!jobExperience.valid && jobExperience.touched">Please Enter Valid Experience !</span>
+            </div>
+        </div>
+       <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Gender</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select ngModel name="gender" id="gender" #gender="ngModel" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select> 
+            <span class="help-block" *ngIf="!gender.valid && gender.touched">Please Enter Valid Gender !</span>
+        </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Date Of Birth</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                 <input type="date" id="mob" ngModel name="dob" placeholder="DOB" #DOB="ngModel" required>
+                 <span class="help-block" *ngIf="!DOB.valid && DOB.touched">Please Enter Valid DOB !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Join Date</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="date" id="mob" ngModel name="joindDate" placeholder="Join Date" #joinDate="ngModel" required> 
+                <span class="help-block" *ngIf="!joinDate.valid && joinDate.touched">Please Enter Valid joinDate !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Role</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select name="staffRole" id="staffRole" ngModel #Role="ngModel" required>
+                <option value="nurse">Nurse</option>
+                <option value="doctor">Doctor</option>
+            </select> 
+            <span class="help-block" *ngIf="!Role.valid && Role.touched">Please Enter Valid Role !</span>
+        </div>
+        </div>
+       
+                <input type="hidden"  [(ngModel)]="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   [(ngModel)]="username" name="username"> 
+             
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn" mat-dialog-close>Cancel</button> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="!registerForm.valid" >Save Info</button> </div>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+

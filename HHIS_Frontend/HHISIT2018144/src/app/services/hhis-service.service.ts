@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StaffModel } from '../staff-form/staff-form.component';
 
 const server_addr = "http://localhost:8082";
 @Injectable({
@@ -7,7 +9,12 @@ const server_addr = "http://localhost:8082";
 })
 export class HhisServiceService {
 
+  staff: StaffModel = new StaffModel();
   constructor(private http:HttpClient) { }
+
+  
+
+
     //Login 
     login_user(data:any){
       let url = server_addr + '/authenticate';
@@ -40,6 +47,31 @@ export class HhisServiceService {
       let tokenStr='Bearer '+token;
       const headers=new HttpHeaders().set("Authorization",tokenStr);
       return this.http.get(url,{headers, responseType: 'json' });
+    }
+
+    //insert staff details
+    insert_staff(data:StaffModel):Observable<StaffModel>{
+      let url = server_addr + '/saveStaffDetails';
+      let token = localStorage.getItem('token');
+      let tokenStr='Bearer '+token;
+      const headers=new HttpHeaders().set("Authorization",tokenStr);
+      return this.http.post<StaffModel>(url,data,{headers, responseType: 'json' });
+    }
+
+    //Fined Staff By ID
+    finedStaffById(id:any):Observable<StaffModel>{
+      let url = server_addr + '/findStaffById/'+id;
+      let token = localStorage.getItem('token');
+      let tokenStr='Bearer '+token;
+      const headers=new HttpHeaders().set("Authorization",tokenStr);
+      return this.http.get<StaffModel>(url,{headers, responseType: 'json' });
+    }
+
+    onEditeDetails(data:any){
+      this.finedStaffById(data.id).subscribe(res=>{
+        this.staff= res;
+        console.log(this.staff);
+      });
     }
 
 }
