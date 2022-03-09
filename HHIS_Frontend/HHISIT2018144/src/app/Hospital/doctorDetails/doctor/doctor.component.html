@@ -1,0 +1,83 @@
+<br>
+<div class="container staffTableTop">
+  <div class="row">
+    <div class="col-sm-6">
+      <button style="margin-top: 15px; margin-right: 2px; width: 60%;" mat-raised-button (click)="openDialog()">Create <mat-icon>queue</mat-icon></button>
+    </div>
+    <div class="col-sm-6">
+      <mat-form-field fxFlex="100%">
+        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" >
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+ 
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="phoneNo">
+      <th mat-header-cell *matHeaderCellDef> phoneNo </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneNo}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="nic">
+      <th mat-header-cell *matHeaderCellDef> nic </th>
+      <td mat-cell *matCellDef="let element"> {{element.nic}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="joindDate">
+      <th mat-header-cell *matHeaderCellDef> joindDate </th>
+      <td mat-cell *matCellDef="let element"> {{element.joindDate}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="doctorSpecialty">
+      <th mat-header-cell *matHeaderCellDef> Specialty </th>
+      <td mat-cell *matCellDef="let element"> {{element.doctorSpecialty}} </td>
+  </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element"> <button mat-icon-button  matTooltip="View">
+        <mat-icon color="primary" (click)="onView(element)">visibility</mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="Edit">
+   
+        <mat-icon style="color:green" (click)="onEdit(element)">edit</mat-icon>
+      
+      </button>
+
+      <button mat-icon-button  matTooltip="Delete">
+        <mat-icon color="warn"(click)="onDelete(element)">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons 
+  aria-label="Select page of periodic elements" class="staffTable">
+</mat-paginator>
+  

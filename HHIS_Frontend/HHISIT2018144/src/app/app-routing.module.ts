@@ -5,7 +5,10 @@ import { AuthGuardGuard } from './auth-guard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
-import { StaffComponent } from './staff/staff.component';
+import { StaffComponent } from './Hospital/staffDetails/staff/staff.component';
+import { DoctorComponent } from './Hospital/doctorDetails/doctor/doctor.component';
+import { WardComponent } from './Hospital/wardDetails/ward/ward.component';
+import { WardSectionComponent } from './Hospital/wardDetails/ward-section/ward-section.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -14,6 +17,11 @@ const routes: Routes = [
     { path: 'das/home', canActivate:[AuthGuardGuard],component: HomeComponent},
     { path: 'das/dashboard', canActivate:[AuthGuardGuard],component: DashboardComponent },
     { path: 'das/staff', canActivate:[AuthGuardGuard],component: StaffComponent },
+    { path: 'das/doctor', canActivate:[AuthGuardGuard],component: DoctorComponent },
+    { path: 'das/ward', canActivate:[AuthGuardGuard],component: WardComponent,children:[
+      { path: 'ward/Section/:id', component: WardSectionComponent,canActivate:[AuthGuardGuard]},
+    ] },
+    
   ]},
 
 ];

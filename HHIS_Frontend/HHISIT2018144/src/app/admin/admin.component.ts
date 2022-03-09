@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HhisServiceService } from '../hhis-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +11,7 @@ export class AdminComponent implements OnInit {
   sideBarOpen = true;
 
   constructor(private router:Router) { 
-    this.router.navigateByUrl('/admin');
+    this.router.navigateByUrl('/admin/das/dashboard');
   }
 
   ngOnInit(): void {

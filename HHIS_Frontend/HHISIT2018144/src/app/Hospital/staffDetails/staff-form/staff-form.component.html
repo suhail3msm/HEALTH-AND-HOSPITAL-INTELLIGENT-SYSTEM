@@ -1,0 +1,84 @@
+
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Staff Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.form" (submit)="onSubmit()" >
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="fname" formControlName="name" placeholder="Name" > 
+                <span class="help-block" *ngIf="service.form.controls['name'].invalid && service.form.controls['name'].touched">Please Enter Valid Name !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="address" formControlName="address" placeholder="Address"> 
+                <span class="help-block" *ngIf="service.form.controls['address'].invalid && service.form.controls['address'].touched">Please Enter Valid Address!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="email" formControlName="email" placeholder="Email" > 
+                <span class="help-block" *ngIf="service.form.controls['email'].invalid && service.form.controls['email'].touched">Please Enter Valid email!</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="phoneNo" formControlName="phoneNo" placeholder="Mobile Number"   > 
+                <span class="help-block" *ngIf="service.form.controls['phoneNo'].invalid && service.form.controls['phoneNo'].touched">Please Enter Valid Mobile Number !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  formControlName="nic" placeholder="NIC"  > 
+                <span class="help-block" *ngIf="service.form.controls['nic'].invalid && service.form.controls['nic'].touched">Please Enter Valid NIC !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text"  formControlName="jobExpiance" placeholder="job Experience"  > 
+                <span class="help-block" *ngIf="service.form.controls['jobExpiance'].invalid && service.form.controls['jobExpiance'].touched">Please Enter Valid Experience !</span>
+            </div>
+        </div>
+       <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Gender</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select formControlName="gender" id="gender" >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select> 
+            <span class="help-block" *ngIf="service.form.controls['gender'].invalid && service.form.controls['gender'].touched">Please Enter Valid Gender !</span>
+        </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Date Of Birth</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                 <input type="date" id="mob" formControlName="dob" placeholder="DOB">
+                 <span class="help-block" *ngIf="service.form.controls['dob'].invalid && service.form.controls['dob'].touched">Please Enter Valid DOB !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Join Date</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="date" id="mob" formControlName="joindDate" placeholder="Join Date" > 
+                <span class="help-block" *ngIf="service.form.controls['joindDate'].invalid && service.form.controls['joindDate'].touched">Please Enter Valid joinDate !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Role</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select formControlName="staffRole" id="staffRole">
+                <option value="nurse">Nurse</option>
+                <option value="doctor">Doctor</option>
+            </select> 
+            <span class="help-block" *ngIf="service.form.controls['staffRole'].invalid && service.form.controls['staffRole'].touched">Please Enter Valid Role !</span>
+        </div>
+        </div>
+       
+                <input type="hidden"  formControlName="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   formControlName="username" name="username"> 
+             
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.form.invalid" >Save Info</button> </div>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+

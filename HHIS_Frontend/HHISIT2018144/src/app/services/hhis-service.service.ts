@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StaffModel } from '../Hospital/staffDetails/staff-form/staff-form.component';
 
 const server_addr = "http://localhost:8082";
 @Injectable({
@@ -7,7 +9,12 @@ const server_addr = "http://localhost:8082";
 })
 export class HhisServiceService {
 
+  staff: StaffModel = new StaffModel();
   constructor(private http:HttpClient) { }
+
+  
+
+
     //Login 
     login_user(data:any){
       let url = server_addr + '/authenticate';
@@ -41,5 +48,8 @@ export class HhisServiceService {
       const headers=new HttpHeaders().set("Authorization",tokenStr);
       return this.http.get(url,{headers, responseType: 'json' });
     }
+
+   
+
 
 }

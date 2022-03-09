@@ -1,0 +1,45 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>ward Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.wardSectionForm" (submit)="onSubmit()" >
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <select formControlName="section" id="section">
+                    <option value="">please select section</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G">G</option>
+                </select> 
+                <span class="help-block" *ngIf="service.wardSectionForm.controls['section'].invalid && service.wardSectionForm.controls['section'].touched">Please Enter Valid section !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="bedNumber" formControlName="bedNumber" placeholder="Number of Bed"> 
+                <span class="help-block" *ngIf="service.wardSectionForm.controls['bedNumber'].invalid && service.wardSectionForm.controls['bedNumber'].touched">Please Enter Valid Number of Bed!</span>
+            </div>
+        </div>
+    
+   
+  
+        <input type="hidden"  formControlName="status" name="status" > 
+        <input type="hidden"  formControlName="wardId" name="wardId" > 
+        <input type="hidden"  formControlName="patientName" name="patientName" > 
+                <input type="hidden"  formControlName="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   formControlName="hospitalName" name="hospitalName"> 
+             
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.wardSectionForm.invalid" >Save Info</button> </div>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+

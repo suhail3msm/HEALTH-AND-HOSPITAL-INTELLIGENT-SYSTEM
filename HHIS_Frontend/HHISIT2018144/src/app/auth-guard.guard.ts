@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HhisServiceService } from './hhis-service.service';
+import { HhisServiceService } from './services/hhis-service.service';
+
 
 @Injectable({
   providedIn: 'root'
