@@ -32,6 +32,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { HhisServiceService } from './services/hhis-service.service';
 import { StaffComponent } from './Hospital/staffDetails/staff/staff.component';
 import { StaffService } from './services/staff.service';
+import { ViewStaffDetailsComponent } from './Hospital/staffDetails/view-staff-details/view-staff-details.component';
+import { DoctorComponent } from './Hospital/doctorDetails/doctor/doctor.component';
+import { DoctorFormComponent } from './Hospital/doctorDetails/doctor-form/doctor-form.component';
+import { ViewDoctorDetailsComponent } from './Hospital/doctorDetails/view-doctor-details/view-doctor-details.component';
+import { DoctorService } from './services/doctor.service';
+import { WardComponent } from './Hospital/wardDetails/ward/ward.component';
+import { WardFormComponent } from './Hospital/wardDetails/ward-form/ward-form.component';
+import { WardSectionComponent } from './Hospital/wardDetails/ward-section/ward-section.component';
+import { WardSectionFormComponent } from './Hospital/wardDetails/ward-section-form/ward-section-form.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +53,14 @@ import { StaffService } from './services/staff.service';
     SidenavComponent,
     StaffFormComponent,
     StaffComponent,
+    ViewStaffDetailsComponent,
+    DoctorComponent,
+    DoctorFormComponent,
+    ViewDoctorDetailsComponent,
+    WardComponent,
+    WardFormComponent,
+    WardSectionComponent,
+    WardSectionFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +88,7 @@ import { StaffService } from './services/staff.service';
     MatSnackBarModule,
     
   ],
-  providers: [HhisServiceService,StaffService,AuthGuardGuard],
+  providers: [HhisServiceService,StaffService,DoctorService,AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

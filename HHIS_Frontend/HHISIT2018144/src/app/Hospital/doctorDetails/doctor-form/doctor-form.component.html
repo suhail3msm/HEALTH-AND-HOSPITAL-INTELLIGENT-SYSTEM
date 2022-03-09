@@ -1,0 +1,104 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Doctor Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.doctorForm" (submit)="onSubmit()" >
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="fname" formControlName="name" placeholder="Name" > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['name'].invalid && service.doctorForm.controls['name'].touched">Please Enter Valid Name !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="address" formControlName="address" placeholder="Address"> 
+                <span class="help-block" *ngIf="service.doctorForm.controls['address'].invalid && service.doctorForm.controls['address'].touched">Please Enter Valid Address!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="email" formControlName="email" placeholder="Email" > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['email'].invalid && service.doctorForm.controls['email'].touched">Please Enter Valid email!</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="phoneNo" formControlName="phoneNo" placeholder="Mobile Number"   > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['phoneNo'].invalid && service.doctorForm.controls['phoneNo'].touched">Please Enter Valid Mobile Number !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  formControlName="nic" placeholder="NIC"  > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['nic'].invalid && service.doctorForm.controls['nic'].touched">Please Enter Valid NIC !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text"  formControlName="jobExpiance" placeholder="job Experience"  > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['jobExpiance'].invalid && service.doctorForm.controls['jobExpiance'].touched">Please Enter Valid Experience !</span>
+            </div>
+        </div>
+       <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Gender</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select formControlName="gender" id="gender" >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select> 
+            <span class="help-block" *ngIf="service.doctorForm.controls['gender'].invalid && service.doctorForm.controls['gender'].touched">Please Enter Valid Gender !</span>
+        </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Date Of Birth</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                 <input type="date" id="mob" formControlName="dob" placeholder="DOB">
+                 <span class="help-block" *ngIf="service.doctorForm.controls['dob'].invalid && service.doctorForm.controls['dob'].touched">Please Enter Valid DOB !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Join Date</label> </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="date" id="mob" formControlName="joindDate" placeholder="Join Date" > 
+                <span class="help-block" *ngIf="service.doctorForm.controls['joindDate'].invalid && service.doctorForm.controls['joindDate'].touched">Please Enter Valid joinDate !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">doctorSpecialty</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <select formControlName="doctorSpecialty" id="doctorSpecialty">
+                <option value="Allergists">Allergists</option>
+                <option value="Dermatologists">Dermatologists</option>
+                <option value="Infectious disease doctors">Infectious disease doctors</option>
+                <option value="Ophthalmologists">Ophthalmologists</option>
+                <option value="Obstetrician/gynecologists">Obstetrician/gynecologists</option>
+                <option value="Cardiologists">Cardiologists</option>
+                <option value="Endocrinologists">Endocrinologists</option>
+                <option value="Dermatologists">Dermatologists</option>
+                <option value="Gastroenterologists">Gastroenterologists</option>
+                <option value="Nephrologists">Nephrologists</option>
+                <option value="Urologists">Urologists</option>
+                <option value="Pulmonologists">Pulmonologists</option>
+                <option value="Otolaryngologists">Otolaryngologists</option>
+                <option value="Neurologists">Neurologists</option>
+                <option value="Psychiatrists">Psychiatrists</option>
+                <option value="Oncologists">Oncologists</option>
+                <option value="Radiologists">Radiologists</option>
+                <option value="Rheumatologists">Rheumatologists</option>
+                <option value="General surgeons">General surgeons</option>
+                <option value="Orthopedic surgeons">Orthopedic surgeons</option>
+                <option value="Cardiac surgeons">Cardiac surgeons</option>
+                <option value="Anesthesiologists">Anesthesiologists</option>
+            </select> 
+            <span class="help-block" *ngIf="service.doctorForm.controls['doctorSpecialty'].invalid && service.doctorForm.controls['doctorSpecialty'].touched">Please Enter Valid Role !</span>
+        </div>
+        </div>
+       
+                <input type="hidden"  formControlName="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   formControlName="username" name="username"> 
+             
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.doctorForm.invalid" >Save Info</button> </div>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+

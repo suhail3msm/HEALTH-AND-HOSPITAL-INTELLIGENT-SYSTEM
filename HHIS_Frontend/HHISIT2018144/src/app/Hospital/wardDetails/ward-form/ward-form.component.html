@@ -1,0 +1,43 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>ward Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.wardForm" (submit)="onSubmit()" >
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="fname" formControlName="id" placeholder="Ward Number" > 
+                <span class="help-block" *ngIf="service.wardForm.controls['id'].invalid && service.wardForm.controls['id'].touched">Please Enter Valid Ward Number !</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="wardName" formControlName="wardName" placeholder="ward Name"> 
+                <span class="help-block" *ngIf="service.wardForm.controls['wardName'].invalid && service.wardForm.controls['wardName'].touched">Please Enter Valid ward Name!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="numberOfPatient" formControlName="numberOfPatient" placeholder="Total Patient" > 
+                <span class="help-block" *ngIf="service.wardForm.controls['numberOfPatient'].invalid && service.wardForm.controls['numberOfPatient'].touched">Please Enter Valid Total Patient!</span>
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="numberOfDeath" formControlName="numberOfDeath" placeholder="Total Death"   > 
+                <span class="help-block" *ngIf="service.wardForm.controls['numberOfDeath'].invalid && service.wardForm.controls['numberOfDeath'].touched">Please Enter Valid Total Death !</span>
+            </div>
+        </div>
+   
+  
+       
+                <input type="hidden"  formControlName="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   formControlName="username" name="username"> 
+             
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.wardForm.invalid" >Save Info</button> </div>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+

@@ -1,4 +1,9 @@
-<h2 mat-dialog-title>Staff Details</h2>
+
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Staff Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
 <mat-dialog-content class="mat-typography">
     <form class="form-card"  [formGroup]="service.form" (submit)="onSubmit()" >
         <div class="row justify-content-between text-left">

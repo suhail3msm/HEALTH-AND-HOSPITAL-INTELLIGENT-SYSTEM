@@ -44,7 +44,7 @@ export class IndexComponent implements OnInit {
     let resp=this.HHISservice.welcome();
     resp.subscribe(data=>this.response=data);
     console.log(this.response);
-    window.location.replace('/admin');
+    window.location.replace('/admin/das/dashboard');
   }
 
 covidCases(){

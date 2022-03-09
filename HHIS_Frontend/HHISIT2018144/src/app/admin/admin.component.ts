@@ -11,7 +11,7 @@ export class AdminComponent implements OnInit {
   sideBarOpen = true;
 
   constructor(private router:Router) { 
-    this.router.navigateByUrl('/admin');
+    this.router.navigateByUrl('/admin/das/dashboard');
   }
 
   ngOnInit(): void {

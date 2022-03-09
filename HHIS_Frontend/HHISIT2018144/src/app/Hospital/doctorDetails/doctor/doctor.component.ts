@@ -1,40 +1,38 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { exportStaff } from '../../../classes/exportStaff';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { exportDoctor } from 'src/app/classes/exportDoctor';
 
 import { MatTableDataSource }  from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { StaffFormComponent, StaffModel } from '../staff-form/staff-form.component';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { HhisServiceService } from '../../../services/hhis-service.service';
-import { StaffService } from '../../../services/staff.service';
-import { ViewStaffDetailsComponent } from '../view-staff-details/view-staff-details.component';
-
+import { DoctorFormComponent } from '../doctor-form/doctor-form.component';
+import { ViewDoctorDetailsComponent } from '../view-doctor-details/view-doctor-details.component';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
-  selector: 'app-staff',
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.scss']
+  selector: 'app-doctor',
+  templateUrl: './doctor.component.html',
+  styleUrls: ['./doctor.component.scss']
 })
-export class StaffComponent implements OnInit {
+export class DoctorComponent implements OnInit {
 
-  ELEMENT_DATA: exportStaff[]=[];
-  displayedColumns:string[]=['name','phoneNo','nic','joindDate','staffRole','gender','action'];
-  dataSource = new MatTableDataSource<exportStaff>(this.ELEMENT_DATA);
+  ELEMENT_DATA: exportDoctor[]=[];
+  displayedColumns:string[]=['name','phoneNo','nic','joindDate','gender','doctorSpecialty','action'];
+  dataSource = new MatTableDataSource<exportDoctor>(this.ELEMENT_DATA);
  
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private hhisservice:HhisServiceService,public dialog: MatDialog,public snackBar: MatSnackBar,private service:StaffService) { }
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private service:DoctorService) { }
 
-  staff: StaffModel = new StaffModel();
+  
 
   ngOnInit(): void {
-    this.getStaff();
+    this.get_Doctor();
   }
-  getStaff(){
-    this.hhisservice.get_staff().subscribe(res=>{
-      this.dataSource.data=res as exportStaff[];
+  get_Doctor(){
+    this.service.get_Doctor().subscribe(res=>{
+      this.dataSource.data=res as exportDoctor[];
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource.data);
     })
@@ -51,12 +49,12 @@ export class StaffComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    const dialogRef = this.dialog.open(StaffFormComponent,dialogConfig);
+    const dialogRef = this.dialog.open(DoctorFormComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       
       if(result==true){
-        this.getStaff();
+        this.get_Doctor();
         this.snackBar.open('New Record are save','Done',{
           duration:2000,
         });
@@ -72,7 +70,7 @@ export class StaffComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
     dialogConfig.width="70%"
-    const dialogRef = this.dialog.open(ViewStaffDetailsComponent,dialogConfig);
+    const dialogRef = this.dialog.open(ViewDoctorDetailsComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       
@@ -80,15 +78,16 @@ export class StaffComponent implements OnInit {
 
   }
   onEdit(data:any):void{
+    console.log("yufyufgyu")
     this.service.populateForm(data);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus=true;
-    const dialogRef = this.dialog.open(StaffFormComponent,dialogConfig);
+    const dialogRef = this.dialog.open(DoctorFormComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       
       if(result==true){
-        this.getStaff();
+        this.get_Doctor();
         this.snackBar.open('New Record are save','Done',{
           duration:2000,
         });
@@ -99,16 +98,13 @@ export class StaffComponent implements OnInit {
     });
   }
 
-  onDelete(data:StaffModel){
+  onDelete(data:any){
     const confirm = window.confirm("Are you sure want to delete ?");
     if(confirm){
-      this.service.deleteStaffById(data.id).subscribe(res=>{
-        this.getStaff();
+      this.service.deleteDoctorById(data.id).subscribe(res=>{
+        this.get_Doctor();
       })
     }
     
   }
- 
 }
-
-
