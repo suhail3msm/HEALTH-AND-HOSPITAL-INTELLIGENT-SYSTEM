@@ -41,7 +41,7 @@ export class StaffService {
       hospitalId:localStorage.getItem('id'),
       jobExpiance:"",
       staffRole:"",
-      username:localStorage.getItem('username')
+      username:localStorage.getItem('hospitalName')
     });
   }
 

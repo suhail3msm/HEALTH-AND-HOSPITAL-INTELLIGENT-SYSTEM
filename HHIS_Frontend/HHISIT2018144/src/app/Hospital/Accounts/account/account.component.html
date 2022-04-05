@@ -1,0 +1,49 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Upload Account Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="accountService.hhssLoginForm" (submit)="onSubmit()">
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Role</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <select formControlName="role" #selectList (change)="getUserName(selectList.value)">
+                    <option value="doctor">Doctor</option>
+                    <option value="pharmacist">Pharmacist</option>
+                    <option value="nurse">Nurse</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <span class="help-block" *ngIf="accountService.hhssLoginForm.controls['role'].invalid && accountService.hhssLoginForm.controls['role'].touched">Please Enter Role !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Name</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <select formControlName="username">
+                    <option *ngFor="let user of Users" value="user.email">{{user.name}}</option>
+                </select>
+                <span class="help-block" *ngIf="accountService.hhssLoginForm.controls['username'].invalid && accountService.hhssLoginForm.controls['username'].touched">Please Enter Valid Username !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Password</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  formControlName="password" placeholder="Password"  > 
+                <span class="help-block" *ngIf="accountService.hhssLoginForm.controls['password'].invalid && accountService.hhssLoginForm.controls['password'].touched">Please Enter Valid Password!</span>
+                
+            </div>
+        </div>
+            
+                <input type="hidden"   formControlName="hospitalName" name="hospitalName"> 
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="accountService.hhssLoginForm.invalid" >Update Info</button> </div>
+                </div>
+             
+        
+    </form>
+</mat-dialog-content>
+

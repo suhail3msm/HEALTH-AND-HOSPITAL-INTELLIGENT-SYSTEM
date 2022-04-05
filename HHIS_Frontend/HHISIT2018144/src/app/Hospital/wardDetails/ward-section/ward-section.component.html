@@ -1,1 +1,60 @@
-<p>ward-section works!</p>
+<div class="row justify-content-between text-left">
+  <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Patient Ward Details</h2></div>
+  <div class="form-group col-sm-4 flex-column d-flex"> 
+      <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+<div class="container">
+    <div class="row">
+      <!--section A-->
+      <div class="beds">
+        <div *ngFor="let aOb of AObject;" class="section">
+          <span class="span"  *ngIf="aOb.status == 'no'" matTooltip="Patient Name: {{aOb.patientName}}, Admitted Date: {{aOb.admittedDate}}" (click)="onView(aOb)">A{{aOb.bedNumber}}</span>
+          <span class="span colorWard" *ngIf="aOb.status == 'yes'" (click)="leaveWardView(aOb)" matTooltip="Patient Name: {{aOb.patientName}}, Admitted Date: {{aOb.admittedDate}}">A{{aOb.bedNumber}}</span>
+        </div>
+      </div>
+      <!--section B-->
+      <div class="beds">
+        <div *ngFor="let bOb of BObject;" >
+          <span class="span"  *ngIf="bOb.status == 'no'" matTooltip="Patient Name: {{bOb.patientName}} , Admitted Date: {{bOb.admittedDate}}" (click)="onView(bOb)">B{{bOb.bedNumber}}</span>
+          <span class="span colorWard" *ngIf="bOb.status == 'yes'" (click)="leaveWardView(bOb)" matTooltip="Patient Name: {{bOb.patientName}} , Admitted Date: {{bOb.admittedDate}}">B{{bOb.bedNumber}}</span>
+        </div>
+      </div>
+      <!--section C-->
+      <div class="beds">
+        <div *ngFor="let cOb of CObject;" >
+          <span class="span"  *ngIf="cOb.status == 'no'" matTooltip="Patient Name: {{cOb.patientName}}, Admitted Date: {{cOb.admittedDate}}" (click)="onView(cOb)">C{{cOb.bedNumber}}</span>
+          <span class="span colorWard" *ngIf="cOb.status == 'yes'" (click)="leaveWardView(cOb)" matTooltip="Patient Name: {{cOb.patientName}}, Admitted Date: {{cOb.admittedDate}}">C{{cOb.bedNumber}}</span>
+        </div>
+      </div>
+     <!--section D-->
+     <div class="beds">
+      <div *ngFor="let dOb of DObject;" >
+        <span class="span"  *ngIf="dOb.status == 'no'" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}" (click)="onView(dOb)">D{{dOb.bedNumber}}</span>
+        <span class="span colorWard" *ngIf="dOb.status == 'yes'" (click)="leaveWardView(dOb)" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}">D{{dOb.bedNumber}}</span>
+      </div>
+    </div>
+     <!--section E-->
+     <div class="beds">
+      <div *ngFor="let dOb of EObject;" >
+        <span class="span"  *ngIf="dOb.status == 'no'" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}" (click)="onView(dOb)">E{{dOb.bedNumber}}</span>
+        <span class="span colorWard" *ngIf="dOb.status == 'yes'" (click)="leaveWardView(dOb)" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}">E{{dOb.bedNumber}}</span>
+      </div>
+    </div>
+   <!--section F-->
+     <div class="beds">
+      <div *ngFor="let dOb of FObject;" >
+        <span class="span"  *ngIf="dOb.status == 'no'" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}" (click)="onView(dOb)">F{{dOb.bedNumber}}</span>
+        <span class="span colorWard" *ngIf="dOb.status == 'yes'" (click)="leaveWardView(dOb)" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}">F{{dOb.bedNumber}}</span>
+      </div>
+    </div>
+   <!--section G-->
+   <div class="beds">
+    <div *ngFor="let dOb of GObject;" >
+      <span class="span"  *ngIf="dOb.status == 'no'" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}" (click)="onView(dOb)">G{{dOb.bedNumber}}</span>
+      <span class="span colorWard" *ngIf="dOb.status == 'yes'" (click)="leaveWardView(dOb)" matTooltip="Patient Name: {{dOb.patientName}}, Admitted Date: {{dOb.admittedDate}}">G{{dOb.bedNumber}}</span>
+    </div>
+  </div>
+
+    </div>
+  </div>

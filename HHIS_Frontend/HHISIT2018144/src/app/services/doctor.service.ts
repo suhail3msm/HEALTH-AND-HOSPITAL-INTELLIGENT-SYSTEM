@@ -45,7 +45,7 @@ export class DoctorService {
       hospitalId:localStorage.getItem('id'),
       jobExpiance:"",
       doctorSpecialty:"",
-      username:localStorage.getItem('username')
+      username:localStorage.getItem('hospitalName')
     });
   }
 
@@ -78,8 +78,8 @@ export class DoctorService {
 
   //get Doctor details
   get_Doctor(){
-    let username = localStorage.getItem("username");
-    let url = server_addr + '/findDoctor/' + username;
+    let hospitalName = localStorage.getItem("hospitalName");
+    let url = server_addr + '/findDoctor/' + hospitalName;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);

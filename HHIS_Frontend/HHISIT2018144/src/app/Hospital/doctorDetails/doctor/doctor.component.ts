@@ -78,7 +78,6 @@ export class DoctorComponent implements OnInit {
 
   }
   onEdit(data:any):void{
-    console.log("yufyufgyu")
     this.service.populateForm(data);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

@@ -1,4 +1,6 @@
-<br>
+<mat-tab-group mat-align-tabs="end">
+  <mat-tab label="Add Ward Details">
+    <br>
 <div class="container staffTableTop">
   <div class="row">
     <div class="col-sm-6">
@@ -45,7 +47,7 @@
     <ng-container matColumnDef="WardSection">
       <th mat-header-cell *matHeaderCellDef>Add Ward Section </th>
       <td mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary" (click)="onAdd(element)">
+      <button mat-flat-button color="primary" matTooltip="Add Ward Section" (click)="onAdd(element)">
         Add
       </button>
 
@@ -56,8 +58,8 @@
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let element">
    <button mat-icon-button  matTooltip="View">
-       
-  <a [routerLink]="['ward/Section', element.id]"> <mat-icon color="primary">visibility</mat-icon></a>
+    <mat-icon color="primary" (click)="onViewBeds(element.id)">visibility</mat-icon>
+ <!--<a [routerLink]="['ward/Section', element.id]"> <mat-icon color="primary">visibility</mat-icon></a>--> 
       </button>
       <button mat-icon-button  matTooltip="Edit">
    
@@ -77,8 +79,77 @@
   showFirstLastButtons 
   aria-label="Select page of periodic elements" class="staffTable">
 </mat-paginator>
+<br><br>
+  </mat-tab>
 
-<div>
-  <router-outlet></router-outlet>
-</div>
-  
+
+<!--Tab 2-->
+  <mat-tab label="Patient Discharge Details">
+    <br>
+    <div class="container staffTableTop">
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field fxFlex="100%">
+            <input matInput type="text" (keyup)="applyFilter1($event)" placeholder="Filter" >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    
+    
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8 staffTable">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+   
+        <ng-container matColumnDef="patientNIC">
+          <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientNIC}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="patientName">
+          <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="wardId">
+          <th mat-header-cell *matHeaderCellDef> ward Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.wardId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="section">
+          <th mat-header-cell *matHeaderCellDef> ward Section </th>
+          <td mat-cell *matCellDef="let element"> {{element.section}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="bedNumber">
+          <th mat-header-cell *matHeaderCellDef> Bed Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.bedNumber}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="admittedDate">
+          <th mat-header-cell *matHeaderCellDef> Admitted Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.admittedDate}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="leavedDate">
+          <th mat-header-cell *matHeaderCellDef> Discharge Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.leavedDate}} </td>
+        </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+    
+      </table>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons 
+      aria-label="Select page of periodic elements" class="staffTable">
+    </mat-paginator>
+    <br><br>
+      
+  </mat-tab>
+</mat-tab-group>

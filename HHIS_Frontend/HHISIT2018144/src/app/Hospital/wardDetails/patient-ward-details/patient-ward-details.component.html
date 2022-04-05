@@ -1,0 +1,65 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Update Patient Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.wardSectionForm" (submit)="onSubmit()">
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Ward Section</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="section" formControlName="section" placeholder="section"> 
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Ward Bed Number</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="bedNumber" formControlName="bedNumber" placeholder="bedNumber"   > 
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Patient Name</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  formControlName="patientName" placeholder="Patient Name"  > 
+                <span class="help-block" *ngIf="service.wardSectionForm.controls['patientName'].invalid && service.wardSectionForm.controls['patientName'].touched">Please Enter Valid Patient Name !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Patient NIC</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text"  formControlName="patientNIC" placeholder="Patient NIC"  > 
+                <span class="help-block" *ngIf="service.wardSectionForm.controls['patientNIC'].invalid && service.wardSectionForm.controls['patientNIC'].touched">Please Enter Valid Patient NIC!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Admitted status</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> <select formControlName="status" id="status" >
+                <option value="">Select Admitted status</option>
+                <option value="yes">Patient Admitted</option>
+                <option value="no">Patient Not Admitted</option>
+            </select> 
+            <span class="help-block" *ngIf="service.wardSectionForm.controls['status'].invalid && service.wardSectionForm.controls['status'].touched">Please Enter Valid status !</span>
+            </div>
+        </div>
+       <div class="row justify-content-between text-left">
+        <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Admitted Date</label></div>
+        <div class="form-group col-sm-6 flex-column d-flex">  
+            <input type="date"  formControlName="admittedDate" placeholder="Admitted Date"> 
+            <span class="help-block" *ngIf="service.wardSectionForm.controls['admittedDate'].invalid && service.wardSectionForm.controls['admittedDate'].touched">Please Enter Valid Patient Admitted Date!</span>
+        </div>
+        </div>
+       
+                <input type="hidden"  formControlName="hospitalId" name="hospitalId" > 
+            
+                <input type="hidden"   formControlName="hospitalName" name="hospitalName"> 
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.wardSectionForm.invalid" >Update Info</button> </div>
+                </div>
+             
+        
+    </form>
+</mat-dialog-content>
+

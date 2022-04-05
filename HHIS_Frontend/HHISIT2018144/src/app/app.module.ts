@@ -41,6 +41,17 @@ import { WardComponent } from './Hospital/wardDetails/ward/ward.component';
 import { WardFormComponent } from './Hospital/wardDetails/ward-form/ward-form.component';
 import { WardSectionComponent } from './Hospital/wardDetails/ward-section/ward-section.component';
 import { WardSectionFormComponent } from './Hospital/wardDetails/ward-section-form/ward-section-form.component';
+import { PatientWardDetailsComponent } from './Hospital/wardDetails/patient-ward-details/patient-ward-details.component';
+import { LeavePatientWardComponent } from './Hospital/wardDetails/leave-patient-ward/leave-patient-ward.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MadicineExcelFileUploadComponent } from './Hospital/farmacy/madicine-excel-file-upload/madicine-excel-file-upload.component';
+import { MedicineTableComponent } from './Hospital/farmacy/medicine-table/medicine-table.component';
+import { MedicineFormComponent } from './Hospital/farmacy/medicine-form/medicine-form.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+import { DoctorPrescriptionComponent } from './Doctor/doctor-prescription/doctor-prescription.component';
+import { AccountComponent } from './Hospital/Accounts/account/account.component';
+import { AccountTableComponent } from './Hospital/Accounts/account-table/account-table.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +72,14 @@ import { WardSectionFormComponent } from './Hospital/wardDetails/ward-section-fo
     WardFormComponent,
     WardSectionComponent,
     WardSectionFormComponent,
+    PatientWardDetailsComponent,
+    LeavePatientWardComponent,
+    MadicineExcelFileUploadComponent,
+    MedicineTableComponent,
+    MedicineFormComponent,
+    DoctorPrescriptionComponent,
+    AccountComponent,
+    AccountTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +105,9 @@ import { WardSectionFormComponent } from './Hospital/wardDetails/ward-section-fo
     MatButtonModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatBadgeModule,
     
   ],
   providers: [HhisServiceService,StaffService,DoctorService,AuthGuardGuard],

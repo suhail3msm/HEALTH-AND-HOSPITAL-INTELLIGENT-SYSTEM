@@ -1,0 +1,49 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Upload Medicine Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.medicineForm" (submit)="onSubmit()">
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Medicine Name</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="medicineName" formControlName="medicineName" placeholder="Medicine Name"> 
+                <span class="help-block" *ngIf="service.medicineForm.controls['medicineName'].invalid && service.medicineForm.controls['medicineName'].touched">Please Enter Valid medicine Name !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for=""> Per 1 package Or Tab medicine Qnt</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="text" id="medicineQnt" formControlName="medicineQnt" placeholder="medicine Qnt"   > 
+                <span class="help-block" *ngIf="service.medicineForm.controls['medicineQnt'].invalid && service.medicineForm.controls['medicineQnt'].touched">Please Enter Valid medicine Qnt !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">medicine Tabs or package</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text"  formControlName="medicineTabs" placeholder="medicine Tabs or package"  > 
+                <span class="help-block" *ngIf="service.medicineForm.controls['medicineName'].invalid && service.medicineForm.controls['medicineName'].touched">Please Enter Valid medicine tabs or package !</span>
+                
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Date</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="date"  formControlName="uploadDate" > 
+                <span class="help-block" *ngIf="service.medicineForm.controls['uploadDate'].invalid && service.medicineForm.controls['uploadDate'].touched">Please Enter Valid Date !</span>
+            </div>
+        </div>
+            
+                <input type="hidden"   formControlName="hospitalName" name="hospitalName"> 
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.medicineForm.invalid" >Update Info</button> </div>
+                </div>
+             
+        
+    </form>
+</mat-dialog-content>
+

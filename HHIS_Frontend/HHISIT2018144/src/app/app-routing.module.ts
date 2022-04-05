@@ -8,7 +8,9 @@ import { IndexComponent } from './index/index.component';
 import { StaffComponent } from './Hospital/staffDetails/staff/staff.component';
 import { DoctorComponent } from './Hospital/doctorDetails/doctor/doctor.component';
 import { WardComponent } from './Hospital/wardDetails/ward/ward.component';
-import { WardSectionComponent } from './Hospital/wardDetails/ward-section/ward-section.component';
+import { MedicineTableComponent } from './Hospital/farmacy/medicine-table/medicine-table.component';
+import { DoctorPrescriptionComponent } from './Doctor/doctor-prescription/doctor-prescription.component';
+import { AccountTableComponent } from './Hospital/Accounts/account-table/account-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -18,9 +20,12 @@ const routes: Routes = [
     { path: 'das/dashboard', canActivate:[AuthGuardGuard],component: DashboardComponent },
     { path: 'das/staff', canActivate:[AuthGuardGuard],component: StaffComponent },
     { path: 'das/doctor', canActivate:[AuthGuardGuard],component: DoctorComponent },
-    { path: 'das/ward', canActivate:[AuthGuardGuard],component: WardComponent,children:[
-      { path: 'ward/Section/:id', component: WardSectionComponent,canActivate:[AuthGuardGuard]},
-    ] },
+    { path: 'das/ward', canActivate:[AuthGuardGuard],component: WardComponent},
+    {path:  'das/pharmacy',canActivate:[AuthGuardGuard],component:MedicineTableComponent},
+    {path:  'das/prescription',canActivate:[AuthGuardGuard],component:DoctorPrescriptionComponent, data: {
+      role: 'doctor'
+    }},
+    {path:  'das/account',canActivate:[AuthGuardGuard],component:AccountTableComponent},
     
   ]},
 

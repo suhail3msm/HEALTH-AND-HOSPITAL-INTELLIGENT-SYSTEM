@@ -1,0 +1,26 @@
+.span{
+    padding: 10px 20px 10px 20px;
+    background-color: antiquewhite;
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+.colorWard{
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+.beds{
+    width: 50%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+.section{
+    background-color: aqua;
+}

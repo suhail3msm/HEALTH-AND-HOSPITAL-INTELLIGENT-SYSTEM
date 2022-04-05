@@ -41,7 +41,7 @@ export class HhisServiceService {
     
     //get staff details
     get_staff(){
-      let username = localStorage.getItem("username");
+      let username = localStorage.getItem("hospitalName");
       let url = server_addr + '/findStaff/' + username;
       let token = localStorage.getItem('token');
       let tokenStr='Bearer '+token;
@@ -49,7 +49,11 @@ export class HhisServiceService {
       return this.http.get(url,{headers, responseType: 'json' });
     }
 
-   
+   //save account details
+ saveAccount(data:any){
+  let url = server_addr + '/saveLoginDetails' ;
+  return this.http.post(url,data);
+}
 
 
 }

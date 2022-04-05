@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
         localStorage.setItem('username',res.username);
         localStorage.setItem('token',res.jwtToken);
         localStorage.setItem('role',res.role);
+        localStorage.setItem('hospitalName',res.hospitalName);
         this.accessApi();
         
     },(error:ErrorHandler)=>{
