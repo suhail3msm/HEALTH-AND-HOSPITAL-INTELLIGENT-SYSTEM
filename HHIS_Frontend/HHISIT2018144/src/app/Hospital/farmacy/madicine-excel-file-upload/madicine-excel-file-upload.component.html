@@ -1,0 +1,31 @@
+<div class="row justify-content-between text-left">
+  <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Upload Medicine Details</h2></div>
+  <div class="form-group col-sm-4 flex-column d-flex"> 
+      <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+<!-- Upload  -->
+<form id="file-upload-form" class="uploader" method="post">
+  <input id="file-upload" type="file" (change)="onFileUpload($event)" name="fileUpload" accept=".xls,.xlsx" />
+  <label for="file-upload" id="file-drag">
+    
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>Select a file or drag here</div>
+      <div id="notimage" class="hidden">Please select an image</div>
+      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>
+    </div>
+  </label>
+  <br>
+  <mat-progress-bar mode="determinate" *ngIf="value>0" value="{{value}}"></mat-progress-bar><span *ngIf="value>0">{{value}} %</span>
+</form>
+
+<div style="text-align: center;" *ngIf="value==100">
+      <button  mat-raised-button color="warn"[mat-dialog-close] style="width: 70%;">Close</button> 
+</div>

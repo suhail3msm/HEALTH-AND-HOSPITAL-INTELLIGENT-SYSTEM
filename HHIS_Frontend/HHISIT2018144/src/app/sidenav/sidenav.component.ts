@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 export class SidenavComponent implements OnInit {
 
   constructor(private router:Router) { }
-
+  role:any;
   ngOnInit(): void {
+    this.role=localStorage.getItem('role');
   }
   logout(){
     localStorage.clear();
