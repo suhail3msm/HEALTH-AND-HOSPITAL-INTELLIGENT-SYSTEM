@@ -15,7 +15,7 @@ export class AccountService {
     id: new FormControl(null),
     username: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
-    role: new FormControl('',Validators.required),
+    role: new FormControl(''),
     hospitalName: new FormControl(null)
   });
 

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 const server_addr = "http://localhost:8082";
 
@@ -14,6 +14,14 @@ export class DoctorService {
 
   
   constructor(private http:HttpClient) { }
+
+  get medicineControl(){
+    return (<FormArray>this.medicineDescriptionForm.get('medicineName')).controls;
+  }
+  get medicineDecControl(){
+    return (<FormArray>this.medicineDescriptionForm.get('medicineDec')).controls;
+  }
+
 
   doctorForm: FormGroup = new FormGroup({
     id: new FormControl(null),
@@ -48,6 +56,63 @@ export class DoctorService {
       username:localStorage.getItem('hospitalName')
     });
   }
+
+  medicineDescriptionForm: FormGroup = new FormGroup({
+    token: new FormControl(null),
+    patientNic: new FormControl(''),
+    patientName: new FormControl(''),
+    numberOfDay: new FormControl('',Validators.required),
+    age: new FormControl(''),
+    doctorEmail: new FormControl(''),
+    hospitalName: new FormControl(''),
+    status: new FormControl(''),
+    descrDate: new FormControl(''),
+    medicineName: new FormArray([]),
+    medicineDec: new FormArray([])
+  });
+
+  initializemedicineDescriptionForm() {
+    this.medicineDescriptionForm.setValue({
+      token:0,
+      patientNic:"",
+      patientName:"",
+      numberOfDay:"",
+      age:"",
+      doctorEmail:localStorage.getItem('username'),
+      hospitalName:localStorage.getItem('hospitalName'),
+      status:"Pending",
+      descrDate:'',
+      medicineName:[],
+      medicineDec:[]
+    });
+  }
+
+onAddMedicine(){
+  
+  const control=new FormControl("",Validators.required);
+  (<FormArray>this.medicineDescriptionForm.get('medicineName')).push(control);
+  
+}
+onRemoveMedicine(index:any){
+  (<FormArray>this.medicineDescriptionForm.get('medicineName')).removeAt(index);
+  (<FormArray>this.medicineDescriptionForm.get('medicineDec')).removeAt(index);
+}
+onAddMedicineDec(){
+  const control=new FormControl("",Validators.required);
+  (<FormArray>this.medicineDescriptionForm.get('medicineDec')).push(control);
+}
+onaddform(){
+  this.onAddMedicine();
+  this.onAddMedicineDec();
+}
+//Delete medicineDescriptionForm details
+deletemedicineDescriptionFormById(id:any){
+  let url = server_addr + '/deletePatientMedicine/'+id;
+  let token = localStorage.getItem('token');
+  let tokenStr='Bearer '+token;
+  const headers=new HttpHeaders().set("Authorization",tokenStr);
+  return this.http.delete(url,{headers, responseType: 'json' });
+}
 
    //insert Doctor details
    insert_Doctor(data:any){
@@ -89,4 +154,19 @@ export class DoctorService {
   populateForm(Doctor: any) {
     this.doctorForm.setValue(Doctor);
   }
+
+  populatePatientDescriptionForm(Doctor: any) {
+    this.medicineDescriptionForm.setValue(Doctor);
+  }
+
+   //insert PatientMadicineTable details
+   patientMadicineTable(data:any){
+    let url = server_addr + '/savePatientMadicineTable';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.post(url,data,{headers, responseType: 'json' });
+  }
 }
+
+

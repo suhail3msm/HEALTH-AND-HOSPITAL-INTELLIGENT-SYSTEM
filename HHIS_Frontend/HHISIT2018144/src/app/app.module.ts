@@ -52,6 +52,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { DoctorPrescriptionComponent } from './Doctor/doctor-prescription/doctor-prescription.component';
 import { AccountComponent } from './Hospital/Accounts/account/account.component';
 import { AccountTableComponent } from './Hospital/Accounts/account-table/account-table.component';
+import { UserRegisterComponent } from './index/user-register/user-register.component';
+import { PrescriptionTableComponent } from './Doctor/prescription-table/prescription-table.component';
+import { EditDoctorPrescriptionComponent } from './Doctor/edit-doctor-prescription/edit-doctor-prescription.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,9 @@ import { AccountTableComponent } from './Hospital/Accounts/account-table/account
     DoctorPrescriptionComponent,
     AccountComponent,
     AccountTableComponent,
+    UserRegisterComponent,
+    PrescriptionTableComponent,
+    EditDoctorPrescriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +114,6 @@ import { AccountTableComponent } from './Hospital/Accounts/account-table/account
     MatTabsModule,
     MatProgressBarModule,
     MatBadgeModule,
-    
   ],
   providers: [HhisServiceService,StaffService,DoctorService,AuthGuardGuard],
   bootstrap: [AppComponent]

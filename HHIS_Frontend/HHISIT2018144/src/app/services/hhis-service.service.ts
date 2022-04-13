@@ -52,8 +52,22 @@ export class HhisServiceService {
    //save account details
  saveAccount(data:any){
   let url = server_addr + '/saveLoginDetails' ;
-  return this.http.post(url,data);
+  return this.http.post(url,{'username':data.username,'password':data.password,'role':data.role,'hospitalName':data.hospitalName});
 }
 
+   //save login details
+   saveLogin(username:any,password:any,role:any,hospitalName:any){
+    let url = server_addr + '/saveLoginDetails' ;
+    return this.http.post(url,{'username':username,'password':password,'role':role,'hospitalName':hospitalName});
+  }
+
+  //Delete account details
+  deleteAccountById(id:any){
+    let url = server_addr + '/deleteAccount/'+id;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.delete(url,{headers, responseType: 'json' });
+  }
 
 }

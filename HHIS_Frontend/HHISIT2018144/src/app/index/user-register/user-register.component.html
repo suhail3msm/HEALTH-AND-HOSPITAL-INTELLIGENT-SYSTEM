@@ -1,0 +1,82 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Register User</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+
+
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="service.userRegister" (submit)="onSubmit()">
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">
+                <input type="text"  formControlName="name" placeholder="Name"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['name'].invalid && service.userRegister.controls['name'].touched">Please Enter Valid Name !</span>
+             </div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="email" id="email" formControlName="email" placeholder="Email"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['email'].invalid && service.userRegister.controls['email'].touched">Please Enter Valid email !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-12 flex-column d-flex">
+                <input type="text"  formControlName="address" placeholder="Address"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['address'].invalid && service.userRegister.controls['address'].touched">Please Enter Valid Name !</span>
+             </div>
+           
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-8 flex-column d-flex">
+                <input type="text"  formControlName="phoneNo" placeholder="Phone Number"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['phoneNo'].invalid && service.userRegister.controls['phoneNo'].touched">Please Enter Valid Phone Number!</span>
+             </div>
+             <div class="form-group col-sm-4 flex-column d-flex"> 
+                <input type="number" id="age" formControlName="age" placeholder="Age"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['age'].invalid && service.userRegister.controls['age'].touched">Please Enter Valid Age!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex">
+                <input type="text"  formControlName="district" placeholder="District"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['district'].invalid && service.userRegister.controls['district'].touched">Please Enter Valid district!</span>
+             </div>
+             <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="text" id="city" formControlName="city" placeholder="City"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['city'].invalid && service.userRegister.controls['city'].touched">Please Enter Valid city!</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-7 flex-column d-flex"> 
+                <input type="text" id="nic" formControlName="nic" placeholder="nic"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['nic'].invalid && service.userRegister.controls['nic'].touched">Please Enter Valid NIC !</span>
+            </div>
+            <div class="form-group col-sm-1 flex-column d-flex"> 
+                <label style="text-align: center; margin-top: 5px;">DOB </label>
+             </div>
+            <div class="form-group col-sm-4 flex-column d-flex">  
+               
+                <input type="date"  formControlName="dob"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['dob'].invalid && service.userRegister.controls['dob'].touched">Please Enter Valid DOB !</span>
+            </div>
+        </div>
+   
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="password"  placeholder="Password"> 
+            </div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="password"  formControlName="password"  placeholder="Conform Password"> 
+                <span class="help-block" *ngIf="service.userRegister.controls['password'].invalid && service.userRegister.controls['password'].touched">Please Enter Valid Conform password !</span>
+            </div>
+        </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="service.userRegister.invalid" >Update Info</button> </div>
+                </div>
+             
+        
+    </form>
+</mat-dialog-content>
+

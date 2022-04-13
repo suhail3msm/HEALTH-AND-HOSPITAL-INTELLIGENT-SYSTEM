@@ -20,6 +20,7 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   getUserName(role:any){
     if(role=="doctor"){
       this.docService.get_Doctor().subscribe(res=>{
@@ -42,10 +43,10 @@ export class AccountComponent implements OnInit {
       Host : 'smtp.elasticemail.com',
       Username : 'suhail2msm@gmail.com',
       Password : 'B313784E97B9984BF96749D1E1B9807CDB2B',
-      To : 'suhail2msm@gmail.com',
-      From : `suhail72msm@gmail.com`,
-      Subject : "ddd",
-      Body :'iuyy'
+      To : this.accountService.hhssLoginForm.value.username,
+      From : `suhail2msm@gmail.com`,
+      Subject : "HHSS Login Details",
+      Body :`Hi User, <br/><b> Welcome HHSS </b> <br/> Username: ${this.accountService.hhssLoginForm.value.username} <br /> Password: ${this.accountService.hhssLoginForm.value.password} `
       }).then( (message: any) => {alert(message); } );
 
     console.log(this.accountService.hhssLoginForm.value);
