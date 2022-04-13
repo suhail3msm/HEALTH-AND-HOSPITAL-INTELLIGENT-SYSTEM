@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MedicineFormComponent } from '../medicine-form/medicine-form.component';
 import { MadicineExcelFileUploadComponent } from '../madicine-excel-file-upload/madicine-excel-file-upload.component';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
   selector: 'app-medicine-table',
@@ -23,7 +24,7 @@ export class MedicineTableComponent implements OnInit {
   paginator!: MatPaginator;
 
 
-  constructor(private service:PharmacyService,public dialog: MatDialog,public snackBar: MatSnackBar) { }
+  constructor(public doctorService:DoctorService,private service:PharmacyService,public dialog: MatDialog,public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMedicineInfo();
@@ -109,5 +110,7 @@ export class MedicineTableComponent implements OnInit {
       
     });
   }
+
+
 
 }

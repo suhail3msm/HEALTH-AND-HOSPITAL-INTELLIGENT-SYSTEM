@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DoctorService } from 'src/app/services/doctor.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-doctor-prescription',
@@ -7,9 +11,81 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorPrescriptionComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public snackBar: MatSnackBar,public doctorService:DoctorService,private userService:UserService,private dialogRef: MatDialogRef<DoctorPrescriptionComponent>) { }
+userDetails:any;
+index:any;
+myDate:any;
+error:any;
+valid=true;
+elementData:any;
   ngOnInit(): void {
+ 
+  }
+  onSubmit(){
+    if(this.doctorService.medicineDescriptionForm.value.token==null){
+      this.myDate = new Date();
+      this.doctorService.medicineDescriptionForm.value.patientName=this.userDetails.name;
+      this.doctorService.medicineDescriptionForm.value.age=this.userDetails.age;
+      this.doctorService.medicineDescriptionForm.value.status="pending";
+      this.doctorService.medicineDescriptionForm.value.doctorEmail=localStorage.getItem('username');
+      this.doctorService.medicineDescriptionForm.value.hospitalName=localStorage.getItem('hospitalName');
+      this.doctorService.medicineDescriptionForm.value.descrDate=this.myDate;
+      this.doctorService.patientMadicineTable(this.doctorService.medicineDescriptionForm.value).subscribe(res=>{
+        this.elementData=res;
+        for(let i=0;this.elementData.medicineName.length > i;i++){
+          this.doctorService.onRemoveMedicine(i);
+         }
+        console.log(res);
+      })
+    }else{
+      this.doctorService.medicineDescriptionForm.value.patientName=this.doctorService.medicineDescriptionForm.value.patientName;
+      this.doctorService.medicineDescriptionForm.value.age=this.doctorService.medicineDescriptionForm.value.age;
+      this.doctorService.medicineDescriptionForm.value.status="pending";
+      this.doctorService.medicineDescriptionForm.value.doctorEmail=localStorage.getItem('username');
+      this.doctorService.medicineDescriptionForm.value.hospitalName=localStorage.getItem('hospitalName');
+      this.doctorService.medicineDescriptionForm.value.descrDate=this.doctorService.medicineDescriptionForm.value.descrDate;
+      this.doctorService.patientMadicineTable(this.doctorService.medicineDescriptionForm.value).subscribe(res=>{
+        this.elementData=res;
+        for(let i=0;this.elementData.medicineName.length > i;i++){
+          this.doctorService.onRemoveMedicine(i);
+         }
+        console.log(res);
+      })
+    }
+  
   }
 
+  getNic(event:any){
+    const filterValue = (event.target as HTMLInputElement).value;
+      if(filterValue.length==9 || filterValue.length==10 || filterValue.length==12){
+        this.valid=true;
+        this.userService.getUserDetailsByNic(filterValue).subscribe(res=>{
+          if(res){
+            this.userDetails=res;
+            this.doctorService.medicineDescriptionForm.value.patientName=this.userDetails.name;
+            this.doctorService.medicineDescriptionForm.value.age=this.userDetails.age;
+          }else{
+            alert("Type Valid NIC Number")
+          }
+         
+        })
+      }else{
+        this.error="Type Valid NIC Number";
+        this.valid=false;
+      }
+  }
+
+  cancel(){
+    let ln=this.doctorService.medicineDescriptionForm.value.medicineName.length;
+    for(let i=0;ln > i;i++){
+      this.doctorService.onRemoveMedicine(i);
+      this.doctorService.onRemoveMedicine(i);
+      this.doctorService.onRemoveMedicine(i);
+      console.log(i)
+     }
+     setTimeout( () => {
+      this.dialogRef.close();
+    }, 1000);
+    
+      }
 }

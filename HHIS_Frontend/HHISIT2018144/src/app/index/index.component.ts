@@ -1,7 +1,10 @@
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HhisServiceService } from '../services/hhis-service.service';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @Component({
   selector: 'app-index',
@@ -11,7 +14,7 @@ import { HhisServiceService } from '../services/hhis-service.service';
 export class IndexComponent implements OnInit {
 
   response:any;
-  constructor(private fb:FormBuilder,private HHISservice:HhisServiceService,private router:Router) { }
+  constructor(private fb:FormBuilder,private HHISservice:HhisServiceService,private router:Router,public dialog: MatDialog,public snackBar: MatSnackBar) { }
 
   loginForm =this.fb.group({
     username: ['',Validators.required],
@@ -54,5 +57,23 @@ covidCases(){
     this.response = res.data;
     
   })
+}
+openUser(){
+  const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="50%"
+    const dialogRef = this.dialog.open(UserRegisterComponent,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      if(result==true){
+        this.snackBar.open('New Record are save','Done',{
+          duration:2000,
+        });
+      }
+      console.log(`Dialog result: ${result}`);
+      
+    });
 }
 }

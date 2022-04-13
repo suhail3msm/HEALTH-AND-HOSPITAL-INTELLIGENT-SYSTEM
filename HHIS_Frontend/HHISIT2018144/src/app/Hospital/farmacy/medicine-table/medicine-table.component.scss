@@ -6,4 +6,12 @@
   .staffTableTop{
       width: 95%;
   }
-  
+  th{
+    font-size: bold;
+    color: #6575eb;
+    background-color: #dde2f4d5;
+  }
+  mat-paginator{
+    font-size: bold;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  }

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { exportAccount } from 'src/app/classes/exportAccount';
 import { AccountService } from 'src/app/services/account.service';
+import { HhisServiceService } from 'src/app/services/hhis-service.service';
 import { AccountComponent } from '../account/account.component';
 
 @Component({
@@ -15,19 +16,20 @@ import { AccountComponent } from '../account/account.component';
 export class AccountTableComponent implements OnInit {
 
   ELEMENT_DATA: exportAccount[]=[];
-  displayedColumns:string[]=['username','role','password','action'];
+  displayedColumns:string[]=['username','role','action'];
   dataSource = new MatTableDataSource<exportAccount>(this.ELEMENT_DATA);
  
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  role:any;
+  role1:any;
 
-  constructor(private accountService:AccountService,public dialog: MatDialog,public snackBar: MatSnackBar) { }
+  constructor(private accountService:AccountService,public dialog: MatDialog,public snackBar: MatSnackBar,private hhisServiceService :HhisServiceService ) { }
 
   ngOnInit(): void {
     this.getuserInfo();
-    this.role=localStorage.getItem('role');
+    this.role1=localStorage.getItem('role');
+    console.log(this.role1)
   }
   getuserInfo(){
     this.accountService.getUserDetails().subscribe(res=>{
@@ -47,6 +49,9 @@ export class AccountTableComponent implements OnInit {
   }
 
   onDelete(element:any){
+    this.hhisServiceService.deleteAccountById(element.id).subscribe(res=>{
+      this.getuserInfo();
+    })
 
   }
   openDialog(){
@@ -64,9 +69,10 @@ export class AccountTableComponent implements OnInit {
         this.snackBar.open('New Record are save','Done',{
           duration:2000,
         });
-        this.getuserInfo();
+        
       }
       console.log(`Dialog result: ${result}`);
+      this.getuserInfo();
       
     });
   }

@@ -75,10 +75,10 @@ export class WardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
       if(result==true){
-        this.get_ward();
         this.snackBar.open('New Record are save','Done',{
           duration:2000,
         });
+        this.get_ward();
       }
     
       console.log(`Dialog result: ${result}`);
@@ -95,10 +95,10 @@ export class WardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
       if(result==true){
-        this.get_ward();
         this.snackBar.open('New Record are save','Done',{
           duration:2000,
         });
+        this.get_ward();
       }
     
       console.log(`Dialog result: ${result}`);

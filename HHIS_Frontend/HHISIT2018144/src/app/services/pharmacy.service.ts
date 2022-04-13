@@ -68,6 +68,26 @@ export class PharmacyService {
     return this.http.put(url,data,{headers, responseType: 'json' });
   }
 
+   //count new patient Medicine details
+   getPatientPendingStatus(){
+    let hospitalName = localStorage.getItem("hospitalName");
+    let url = server_addr + '/getPendingStatus/' + hospitalName;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
+   // get patient Description Details 
+   patientDescriptionDetails(){
+    let username = localStorage.getItem("username");
+    let url = server_addr + '/getMedicineDoctorBy/' + username;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
   populateForm(medicine: any) {
     medicine.hospitalName=localStorage.getItem('hospitalName');
     medicine.medicineQnt=medicine.medicineQnt/medicine.medicineTabs;
