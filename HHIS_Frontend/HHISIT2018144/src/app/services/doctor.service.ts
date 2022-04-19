@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { exportUser } from '../classes/exportUser';
 
 const server_addr = "http://localhost:8082";
 
@@ -14,6 +16,8 @@ export class DoctorService {
 
   
   constructor(private http:HttpClient) { }
+
+  dataSet:any;
 
   get medicineControl(){
     return (<FormArray>this.medicineDescriptionForm.get('medicineName')).controls;
@@ -53,7 +57,7 @@ export class DoctorService {
       hospitalId:localStorage.getItem('id'),
       jobExpiance:"",
       doctorSpecialty:"",
-      username:localStorage.getItem('hospitalName')
+      username:localStorage.getItem('username')
     });
   }
 
@@ -67,6 +71,9 @@ export class DoctorService {
     hospitalName: new FormControl(''),
     status: new FormControl(''),
     descrDate: new FormControl(''),
+    descrYear: new FormControl(''),
+    descrMonth: new FormControl(''),
+    descrTime: new FormControl(''),
     medicineName: new FormArray([]),
     medicineDec: new FormArray([])
   });
@@ -81,6 +88,9 @@ export class DoctorService {
       doctorEmail:localStorage.getItem('username'),
       hospitalName:localStorage.getItem('hospitalName'),
       status:"Pending",
+      descrYear:'',
+      descrMonth:'',
+      descrTime:'',
       descrDate:'',
       medicineName:[],
       medicineDec:[]
@@ -143,13 +153,27 @@ deletemedicineDescriptionFormById(id:any){
 
   //get Doctor details
   get_Doctor(){
-    let hospitalName = localStorage.getItem("hospitalName");
+    let hospitalName = localStorage.getItem("username");
     let url = server_addr + '/findDoctor/' + hospitalName;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.get(url,{headers, responseType: 'json' });
   }
+
+   //get Doctor details
+   get_DoctorByEmail(){
+    let email = localStorage.getItem("username");
+    let url = server_addr + '/findDoctorByEmail/' + email;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
+ViewDoctorDetails(data:any){
+  this.dataSet=data;
+}
 
   populateForm(Doctor: any) {
     this.doctorForm.setValue(Doctor);

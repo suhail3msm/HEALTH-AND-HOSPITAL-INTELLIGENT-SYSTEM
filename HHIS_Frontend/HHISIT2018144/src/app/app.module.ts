@@ -55,6 +55,15 @@ import { AccountTableComponent } from './Hospital/Accounts/account-table/account
 import { UserRegisterComponent } from './index/user-register/user-register.component';
 import { PrescriptionTableComponent } from './Doctor/prescription-table/prescription-table.component';
 import { EditDoctorPrescriptionComponent } from './Doctor/edit-doctor-prescription/edit-doctor-prescription.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ViewMyProfileComponent } from './header/view-my-profile/view-my-profile.component';
+import { SearchPatientComponent } from './Doctor/search-patient/search-patient.component';
+import { BloodSugarComponent } from './userDetails/blood-sugar/blood-sugar.component';
+import { BloodPressureComponent } from './userDetails/blood-pressure/blood-pressure.component';
+import { HospitalRegisterFormComponent } from './index/hospital-register-form/hospital-register-form.component';
+import {MatSelectModule} from '@angular/material/select';
+import { ViewHospitalProfileComponent } from './header/view-hospital-profile/view-hospital-profile.component';
+import { SettingComponent } from './header/setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +95,13 @@ import { EditDoctorPrescriptionComponent } from './Doctor/edit-doctor-prescripti
     UserRegisterComponent,
     PrescriptionTableComponent,
     EditDoctorPrescriptionComponent,
+    ViewMyProfileComponent,
+    SearchPatientComponent,
+    BloodSugarComponent,
+    BloodPressureComponent,
+    HospitalRegisterFormComponent,
+    ViewHospitalProfileComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +130,11 @@ import { EditDoctorPrescriptionComponent } from './Doctor/edit-doctor-prescripti
     MatTabsModule,
     MatProgressBarModule,
     MatBadgeModule,
+    NgChartsModule,
+    MatSelectModule,
+    
+
+    
   ],
   providers: [HhisServiceService,StaffService,DoctorService,AuthGuardGuard],
   bootstrap: [AppComponent]

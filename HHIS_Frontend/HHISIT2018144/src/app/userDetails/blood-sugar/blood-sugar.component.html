@@ -1,0 +1,32 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Upload Sugar Details</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form class="form-card"  [formGroup]="userService.bloodSugar" (submit)="onSubmit()">
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Sugar Level</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex"> 
+                <input type="number" id="sugerLevel" formControlName="sugerLevel" placeholder="Sugar Level"> 
+                <span class="help-block" *ngIf="userService.bloodSugar.controls['sugerLevel'].invalid && userService.bloodSugar.controls['sugerLevel'].touched">Please Enter Valid Sugar Level !</span>
+            </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Date</label></div>
+            <div class="form-group col-sm-6 flex-column d-flex">  
+                <input type="date" id="nchackDate" formControlName="nchackDate" > 
+                <span class="help-block" *ngIf="userService.bloodSugar.controls['nchackDate'].invalid && userService.bloodSugar.controls['nchackDate'].touched">Please Enter Valid Date!</span>
+            </div>
+        </div>
+
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">   <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="userService.bloodSugar.invalid" >Update Info</button> </div>
+                </div>
+             
+        
+    </form>
+</mat-dialog-content>
+

@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HhisServiceService } from '../services/hhis-service.service';
+import { HospitalRegisterFormComponent } from './hospital-register-form/hospital-register-form.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 
 @Component({
@@ -14,7 +15,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 export class IndexComponent implements OnInit {
 
   response:any;
-  constructor(private fb:FormBuilder,private HHISservice:HhisServiceService,private router:Router,public dialog: MatDialog,public snackBar: MatSnackBar) { }
+  constructor(private fb:FormBuilder,public HHISservice:HhisServiceService,private router:Router,public dialog: MatDialog,public snackBar: MatSnackBar) { }
 
   loginForm =this.fb.group({
     username: ['',Validators.required],
@@ -22,6 +23,7 @@ export class IndexComponent implements OnInit {
   })
   loginError ="";
 
+  role:any;
 
   ngOnInit(): void {
     this.covidCases();
@@ -34,7 +36,7 @@ export class IndexComponent implements OnInit {
         localStorage.setItem('logged_in','1');
         localStorage.setItem('username',res.username);
         localStorage.setItem('token',res.jwtToken);
-        localStorage.setItem('role',res.role);
+       localStorage.setItem('role',res.role);
         localStorage.setItem('hospitalName',res.hospitalName);
         this.accessApi();
         
@@ -48,7 +50,14 @@ export class IndexComponent implements OnInit {
     let resp=this.HHISservice.welcome();
     resp.subscribe(data=>this.response=data);
     console.log(this.response);
+    this.role= localStorage.getItem('role');
+    if(this.role=="hospital" || this.role=="admin"){
     window.location.replace('/admin/das/dashboard');
+    }else if(this.role=="doctor"){
+      window.location.replace('/admin/das/prescription');
+    }else if(this.role=="pharmacist"){
+      window.location.replace('/admin/das/pharmacy');
+    }
   }
 
 covidCases(){
@@ -64,6 +73,25 @@ openUser(){
     dialogConfig.autoFocus=true;
     dialogConfig.width="50%"
     const dialogRef = this.dialog.open(UserRegisterComponent,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      if(result==true){
+        this.snackBar.open('New Record are save','Done',{
+          duration:2000,
+        });
+      }
+      console.log(`Dialog result: ${result}`);
+      
+    });
+}
+
+openHospital(){
+  const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="60%"
+    const dialogRef = this.dialog.open(HospitalRegisterFormComponent,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       

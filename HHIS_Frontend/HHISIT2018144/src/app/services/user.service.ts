@@ -8,7 +8,7 @@ const server_addr = "http://localhost:8082";
   providedIn: 'root'
 })
 export class UserService {
-
+  
   constructor(private http:HttpClient) { }
 
   userRegister: FormGroup = new FormGroup({
@@ -22,9 +22,68 @@ export class UserService {
     nic: new FormControl('',Validators.required),
     dob: new FormControl('',Validators.required),
     age: new FormControl('',Validators.required),
+    bloodGroup:new FormControl(''),
     password: new FormControl('',Validators.required)
    
   });
+
+  //blood sugar form
+  bloodSugar: FormGroup = new FormGroup({
+    id: new FormControl(null),
+		patientNic: new FormControl(''),
+		nchackDate: new FormControl('',Validators.required),
+		sugerLevel: new FormControl('',Validators.required),
+		hospitalName: new FormControl(''),
+		subervName: new FormControl('')
+  })
+
+   //blood Pressure form
+   bloodPressure: FormGroup = new FormGroup({
+    id: new FormControl(null),
+		patientNic: new FormControl(''),
+		nchackDate: new FormControl('',Validators.required),
+		pressureLevel: new FormControl('',Validators.required),
+		hospitalName: new FormControl(''),
+		subervName: new FormControl('')
+  })
+
+   //insert blood Pressure details
+   insertBloodPressure(data:any){
+    let url = server_addr + '/saveBloodPressure';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.post(url,data,{headers, responseType: 'json' });
+  }
+  
+   //insert blood Sugar details
+   insertBloodSugar(data:any){
+    let url = server_addr + '/saveBloodSuger';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.post(url,data,{headers, responseType: 'json' });
+  }
+
+// get blood Pressure 
+getBloodPressure(){
+  let nic=localStorage.getItem("nic");
+  let url = server_addr + '/getBloodPressure/' + nic;
+  let token = localStorage.getItem('token');
+  let tokenStr='Bearer '+token;
+  const headers=new HttpHeaders().set("Authorization",tokenStr);
+  return this.http.get(url,{headers, responseType: 'json' });
+}
+
+// get blood Sugar 
+getBloodSugar(){
+  let nic=localStorage.getItem("nic");
+  let url = server_addr + '/getBloodSuger/' + nic;
+  let token = localStorage.getItem('token');
+  let tokenStr='Bearer '+token;
+  const headers=new HttpHeaders().set("Authorization",tokenStr);
+  return this.http.get(url,{headers, responseType: 'json' });
+}
 
      //save account details
  saveUser(data:any){
@@ -37,19 +96,49 @@ export class UserService {
   'city':data.city,
   'nic':data.nic,
   'dob':data.dob,
-  'age':data.age
+  'age':data.age,
+  'bloodGroup':data.bloodGroup
 });
 }
 
   // get user Details 
-  getUserDetailsByNic(nic:any){
-    let url = server_addr + '/getuserDetails/' + nic;
+  getUserDetailsByNic(data:any){
+    let url = server_addr + '/getuserDetails/' + data;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.get(url,{headers, responseType: 'json' });
   }
 
+    // get PatientMadicineByNic Details 
+    getPatientMedicineByNic(){
+      let nic=localStorage.getItem("nic");
+      let url = server_addr + '/getPatientMedicineByNic/' + nic;
+      let token = localStorage.getItem('token');
+      let tokenStr='Bearer '+token;
+      const headers=new HttpHeaders().set("Authorization",tokenStr);
+      return this.http.get(url,{headers, responseType: 'json' });
+    }
+
+        // get getPatientWardDetailsByNIC Details 
+        getPatientWardDetailsByNIC(){
+          let nic=localStorage.getItem("nic");
+          let url = server_addr + '/getPatientWardDetailsByNIC/' + nic;
+          let token = localStorage.getItem('token');
+          let tokenStr='Bearer '+token;
+          const headers=new HttpHeaders().set("Authorization",tokenStr);
+          return this.http.get(url,{headers, responseType: 'json' });
+        }
+
+        // get getMedicineMonthlyCountByNic Details 
+        getMedicineMonthlyCountByNic(){
+          let nic=localStorage.getItem("nic");
+          let url = server_addr + '/getMedicineMonthlyCountByNic/' + nic;
+          let token = localStorage.getItem('token');
+          let tokenStr='Bearer '+token;
+          const headers=new HttpHeaders().set("Authorization",tokenStr);
+          return this.http.get(url,{headers, responseType: 'json' });
+        }
   
 
 }

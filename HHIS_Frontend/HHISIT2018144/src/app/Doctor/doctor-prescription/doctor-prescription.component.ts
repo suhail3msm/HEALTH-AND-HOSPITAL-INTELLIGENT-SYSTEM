@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,6 +16,9 @@ export class DoctorPrescriptionComponent implements OnInit {
 userDetails:any;
 index:any;
 myDate:any;
+myYear:any;
+myMonth:any;
+myTime:any;
 error:any;
 valid=true;
 elementData:any;
@@ -23,13 +27,19 @@ elementData:any;
   }
   onSubmit(){
     if(this.doctorService.medicineDescriptionForm.value.token==null){
-      this.myDate = new Date();
+      this.myDate = formatDate(new Date(), 'dd', 'en');
+      this.myMonth = formatDate(new Date(), 'MMM', 'en');
+      this.myYear = formatDate(new Date(), 'yyyy', 'en');
+      this.myTime = formatDate(new Date(), 'hh:mm', 'en');
       this.doctorService.medicineDescriptionForm.value.patientName=this.userDetails.name;
       this.doctorService.medicineDescriptionForm.value.age=this.userDetails.age;
       this.doctorService.medicineDescriptionForm.value.status="pending";
       this.doctorService.medicineDescriptionForm.value.doctorEmail=localStorage.getItem('username');
       this.doctorService.medicineDescriptionForm.value.hospitalName=localStorage.getItem('hospitalName');
       this.doctorService.medicineDescriptionForm.value.descrDate=this.myDate;
+      this.doctorService.medicineDescriptionForm.value.descrMonth=this.myMonth;
+      this.doctorService.medicineDescriptionForm.value.descrYear=this.myYear;
+      this.doctorService.medicineDescriptionForm.value.descrTime=this.myTime;
       this.doctorService.patientMadicineTable(this.doctorService.medicineDescriptionForm.value).subscribe(res=>{
         this.elementData=res;
         for(let i=0;this.elementData.medicineName.length > i;i++){
@@ -83,9 +93,9 @@ elementData:any;
       this.doctorService.onRemoveMedicine(i);
       console.log(i)
      }
-     setTimeout( () => {
+
       this.dialogRef.close();
-    }, 1000);
+    
     
       }
 }

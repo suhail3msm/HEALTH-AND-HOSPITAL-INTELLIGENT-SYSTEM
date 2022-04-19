@@ -3,10 +3,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { ChartConfiguration, ChartData } from 'chart.js';
 import { exportUser } from 'src/app/classes/exportUser';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { PharmacyService } from 'src/app/services/pharmacy.service';
 import { DoctorPrescriptionComponent } from '../doctor-prescription/doctor-prescription.component';
+
+ 
 
 @Component({
   selector: 'app-prescription-table',
@@ -15,22 +18,76 @@ import { DoctorPrescriptionComponent } from '../doctor-prescription/doctor-presc
 })
 export class PrescriptionTableComponent implements OnInit {
 
+
+
+
   ELEMENT_DATA: exportUser[]=[];
-  displayedColumns:string[]=['patientName','patientNic','age','status','action'];
+  displayedColumns:string[]=['patientName','patientNic','descrDate','status','action'];
   dataSource = new MatTableDataSource<exportUser>(this.ELEMENT_DATA);
  
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(public doctorService:DoctorService,private service:PharmacyService,public dialog: MatDialog,public snackBar: MatSnackBar) { }
+  constructor(public doctorService:DoctorService,private service:PharmacyService,public dialog: MatDialog,public snackBar: MatSnackBar) { 
 
+  }
+  
+  totalPatient:any;
+  accept:any;
+  pending:any;
+  
+  chartPatient:any;
+  chartMonth=[];
+  chartTotal=[];
+
+  
+  public barChartLegend = true;
+  public barChartPlugins = [];
+
+
+  chartData: ChartData<'bar'> = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+      }
+    ]
+  };
+
+  public barChartOptions: ChartConfiguration<'bar'>['options'] = {
+    responsive: true,
+  };
 
   ngOnInit(): void {
+    this.getChartList();
     this.getMedicineInfo();
+    
+
+    
+  }
+
+  getChartList(){
+    this.service.get_Chart().subscribe(res=>{
+      this.chartPatient =res;
+      this.chartMonth=this.chartPatient.map((month:{month:string;}) => month.month);
+      this.chartTotal=this.chartPatient.map((totalPatient:{totalPatient:any;}) => totalPatient.totalPatient);
+      this.chartData = {
+        labels: this.chartMonth,
+        datasets: [
+          {
+            data: this.chartTotal, label: '2022 Patient',
+          }
+        ]
+      };
+
+    })
   }
 
   getMedicineInfo(){
     this.service.patientDescriptionDetails().subscribe(res=>{
+      this.totalPatient =res
+      this.accept = this.totalPatient.filter((status: { status: string; }) => status.status === "accept");
+      this.pending = this.totalPatient.filter((status: { status: string; }) => status.status === "pending");
       this.dataSource.data=res as exportUser[];
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource.data);
@@ -111,6 +168,5 @@ export class PrescriptionTableComponent implements OnInit {
       
     });
   }
-
 
 }

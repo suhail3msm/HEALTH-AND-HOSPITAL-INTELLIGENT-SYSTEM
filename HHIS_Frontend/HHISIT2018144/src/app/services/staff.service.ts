@@ -41,7 +41,7 @@ export class StaffService {
       hospitalId:localStorage.getItem('id'),
       jobExpiance:"",
       staffRole:"",
-      username:localStorage.getItem('hospitalName')
+      username:localStorage.getItem('username')
     });
   }
 
@@ -74,5 +74,15 @@ export class StaffService {
 
   populateForm(staff: any) {
     this.form.setValue(staff);
+  }
+
+  //get Staff details
+  getStaffByEmail(){
+    let email = localStorage.getItem("username");
+    let url = server_addr + '/findStaffTableByEmail/' + email;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
   }
 }
