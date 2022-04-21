@@ -15,70 +15,98 @@
 </div>
 
 <br>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
- 
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ward Number </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-  
-    
-    <ng-container matColumnDef="wardName">
-      <th mat-header-cell *matHeaderCellDef> wardName </th>
-      <td mat-cell *matCellDef="let element"> {{element.wardName}} </td>
-    </ng-container>
-  
-    
-    <ng-container matColumnDef="numberOfPatient">
-      <th mat-header-cell *matHeaderCellDef> Total Patient </th>
-      <td mat-cell *matCellDef="let element"> {{element.numberOfPatient}} </td>
-    </ng-container>
-  
-  
-    <ng-container matColumnDef="numberOfDeath">
-      <th mat-header-cell *matHeaderCellDef> Total Death </th>
-      <td mat-cell *matCellDef="let element"> {{element.numberOfDeath}} </td>
-    </ng-container>
+<div class="container">
+  <div class="row justify-content-between text-left">
+    <div class="col-md-4">
+        <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+          <div class="col-md-12 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(229, 161, 241) 95%,
+          rgb(113, 7, 106) 50%); border-radius: 5px;">
+            <p>Admit Patients</p>
+            <i style="font-size: 25px; " class="fas fa-procedures"></i>
+            <h4>{{totalAdmitPatients?.length}}</h4>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+          <div class="col-md-12 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(161, 241, 184) 95%,
+          rgb(13, 87, 22) 50%); border-radius: 5px;">
+            <p>Discharge Patient </p>
+            <i style="font-size: 25px;" class="fa fa-users"></i>
+            <h4>{{totalDischargePatient?.length}}</h4>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
 
-    <ng-container matColumnDef="WardSection">
-      <th mat-header-cell *matHeaderCellDef>Add Ward Section </th>
-      <td mat-cell *matCellDef="let element">
-      <button mat-flat-button color="primary" matTooltip="Add Ward Section" (click)="onAdd(element)">
-        Add
-      </button>
-
-    </td>
-  </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let element">
-   <button mat-icon-button  matTooltip="View">
-    <mat-icon color="primary" (click)="onViewBeds(element.id)">visibility</mat-icon>
- <!--<a [routerLink]="['ward/Section', element.id]"> <mat-icon color="primary">visibility</mat-icon></a>--> 
-      </button>
-      <button mat-icon-button  matTooltip="Edit">
-   
-        <mat-icon style="color:green" (click)="onEdit(element)">edit</mat-icon>
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
       
-      </button>
+     
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ward Number </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="wardName">
+          <th mat-header-cell *matHeaderCellDef> wardName </th>
+          <td mat-cell *matCellDef="let element"> {{element.wardName}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="numberOfPatient">
+          <th mat-header-cell *matHeaderCellDef> Total Patient </th>
+          <td mat-cell *matCellDef="let element"> {{element.numberOfPatient}} </td>
+        </ng-container>
+      
+      
+        <ng-container matColumnDef="numberOfDeath">
+          <th mat-header-cell *matHeaderCellDef> Total Death </th>
+          <td mat-cell *matCellDef="let element"> {{element.numberOfDeath}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="WardSection">
+          <th mat-header-cell *matHeaderCellDef>Add Ward Section </th>
+          <td mat-cell *matCellDef="let element">
+          <button mat-flat-button color="primary" matTooltip="Add Ward Section" (click)="onAdd(element)">
+            Add
+          </button>
+    
+        </td>
+      </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+       <button mat-icon-button  matTooltip="View">
+        <mat-icon color="primary" (click)="onViewBeds(element.id)">visibility</mat-icon>
+     <!--<a [routerLink]="['ward/Section', element.id]"> <mat-icon color="primary">visibility</mat-icon></a>--> 
+          </button>
+          <button mat-icon-button  matTooltip="Edit">
+       
+            <mat-icon style="color:green" (click)="onEdit(element)">edit</mat-icon>
+          
+          </button>
+    
+        </td>
+      </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      </table>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons 
+      aria-label="Select page of periodic elements" class="staffTable">
+    </mat-paginator>
+    </div>
+  </div>
+</div>
 
-    </td>
-  </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-  
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-  showFirstLastButtons 
-  aria-label="Select page of periodic elements" class="staffTable">
-</mat-paginator>
 <br><br>
   </mat-tab>
 

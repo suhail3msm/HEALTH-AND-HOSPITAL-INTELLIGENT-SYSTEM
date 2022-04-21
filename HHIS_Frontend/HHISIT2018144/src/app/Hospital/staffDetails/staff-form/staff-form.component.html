@@ -62,17 +62,14 @@
         <div class="row justify-content-between text-left">
             <div class="form-group col-sm-6 flex-column d-flex"> <label for="">Select Role</label></div>
             <div class="form-group col-sm-6 flex-column d-flex"> <select formControlName="staffRole" id="staffRole">
-                <option value="nurse unit manager">nurse unit manager</option>
-                <option value="associate nurse unit manager">associate nurse unit manager</option>
-                <option value="nurse practitioners">nurse practitioners</option>
+              <option value="nurse practitioners">nurse practitioners</option>
                 <option value="enrolled nurses ">enrolled nurses </option>
                 <option value="registered nurses">registered nurses</option>
                     <option value="pharmacists">pharmacists</option>
                     <option value="dietitians">dietitians</option>
                     <option value="occupational therapists">occupational therapists</option>
                     <option value="clinical assistants">clinical assistants</option>
-                    <option value="patient services assistants">patient services assistants</option>
-                    <option value="porters">porters</option>
+                   <option value="porters">porters</option>
                     <option value="ward clerks">ward clerks</option>
             </select> 
             <span class="help-block" *ngIf="service.form.controls['staffRole'].invalid && service.form.controls['staffRole'].touched">Please Enter Valid Role !</span>

@@ -8,16 +8,15 @@
                       <div class="row">
                           <div class="col-sm-4 my-2 pe-0">
                               <div class="last-month">
-                                  <h5>Dashboard</h5>
-                                  <p>Overview of Latest Month</p>
+                                  <h5>Staff Details</h5>
+                                  <p>Total Staff</p>
 
                                   <div class="earn">
-                                      <h2>$3367.98</h2>
-                                      <p>Current Month Sales</p>
+                                      <h2>{{totalStaff?.length}}</h2>
+                                      <p>Total Nurse Staff</p>
                                   </div>
                                   <div class="sale mb-3">
-                                      <h2>95</h2>
-                                      <p>Current Month Sales</p>
+                                      <p>{{totalNurse}}</p>
                                   </div>
                               </div>
                           </div>
@@ -25,16 +24,15 @@
 
 
                           <div class="col-sm-8 my-2 ps-0">
-                              <div class="classic-tabs">
+                              <div class="classic-tabs" style="padding-top: 15px; padding-right: 15px;">
                                   
-                                      <canvas baseChart
-                                        [type]="'bar'"
-                                        [datasets]="barChartDatasets"
-                                        [labels]="barChartLabels"
-                                        [options]="barChartOptions"
-                                        [plugins]="barChartPlugins"
-                                        [legend]="barChartLegend">
-                                      </canvas>
+                                <canvas  baseChart
+                                [data]="staffChart"
+                                [options]="barChartOptions"
+                                [plugins]="barChartPlugins"
+                                [legend]="barChartLegend"
+                                [type]="'bar'">
+                                </canvas>
 
                          
                               </div>
@@ -42,7 +40,7 @@
 
                           </div>
                       </div>
-
+<br>
                       <div class="wre-sec">
                           <div class="row">
                           
@@ -52,11 +50,11 @@
 
                                       <div class="earn-view-text">
                                           <p class="name-text">
-                                              Referral Earning
+                                              Total Clerks
                                           </p>
-                                          <h6 class="balance-text">
-                                              $1204.54
-                                          </h6>
+                                          <h5 class="balance-text">
+                                             {{ward_clerks}}
+                                          </h5>
                                       </div>
                                   </div>
                               </div>
@@ -66,10 +64,10 @@
 
                                       <div class="earn-view-text">
                                           <p class="name-text">
-                                              Estimate Sales
+                                              Male Staff
                                           </p>
                                           <h6 class="balance-text">
-                                              $184.54
+                                              {{totalMaleStaff?.length}}
                                           </h6>
                                       </div>
                                   </div>
@@ -80,10 +78,10 @@
 
                                       <div class="earn-view-text">
                                           <p class="name-text">
-                                              Earning
+                                            Female Staff
                                           </p>
                                           <h6 class="balance-text">
-                                              $16984.54
+                                            {{totalFemaleStaff?.length}}
                                           </h6>
                                       </div>
                                   </div>
@@ -97,18 +95,17 @@
               <div class="col-lg-4">
                   <div class="bg-white top-chart-earn">
                       <div class="traffice-title">
-                          <p>Traffice</p>
+                          <p>Accounts</p>
                       </div>
-                      <div class="traffic">
+                      <div class="traffic" style="padding: 10px;">
                           <div id="chart-2">
-                            <canvas baseChart
-                            [type]="'pie'"
-                            [datasets]="pieChartDatasets"
-                            [labels]="pieChartLabels"
-                            [options]="pieChartOptions"
-                            [plugins]="pieChartPlugins"
-                            [legend]="pieChartLegend">
-                            </canvas>
+                            <canvas  baseChart
+                                [data]="accountChart"
+                                [options]="pieChartOptions"
+                                [plugins]="barChartPlugins"
+                                [legend]="pieChartLegend"
+                                [type]="'doughnut'">
+                                </canvas>
                           </div>
                       </div>
                   </div>
@@ -122,62 +119,62 @@
   <div class="main-part">
     <div class="cpanel">
     <div class="icon-part">
-    <i class="fa fa-users" aria-hidden="true"></i><br>
-    <small>Members</small>
-    <p>985</p>
+    <i class="fas fa-user-md" aria-hidden="true"></i><br>
+    <small>Doctors</small>
+    <p>{{totalDoctors?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     <div class="cpanel cpanel-green">
     <div class="icon-part">
-    <i class="fa fa-money" aria-hidden="true"></i><br>
-    <small>Account</small>
-    <p>$ 452</p>
+    <i class="fas fa-warehouse" aria-hidden="true"></i><br>
+    <small>Wards</small>
+    <p>{{totalWard?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     <div class="cpanel cpanel-orange">
     <div class="icon-part">
-    <i class="fa fa-bell" aria-hidden="true"></i><br>
-    <small>Alert</small>
-    <p>11 New</p>
+    <i class="fas fa-procedures" aria-hidden="true"></i><br>
+    <small>Admit Patients</small>
+    <p>{{totalAdmitPatients?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     <div class="cpanel cpanel-blue">
     <div class="icon-part">
-    <i class="fa fa-tasks" aria-hidden="true"></i><br>
-    <small>Task</small>
-    <p>85</p>
+    <i class="fas fa-capsules" aria-hidden="true"></i><br>
+    <small>Medicine</small>
+    <p>{{totalMedicine?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     <div class="cpanel cpanel-red">
     <div class="icon-part">
-    <i class="fa fa-shopping-cart" aria-hidden="true"></i><br>
-    <small>Cart</small>
-    <p>$ 45</p>
+    <i class="fas fa-user-circle" aria-hidden="true"></i><br>
+    <small>Accounts</small>
+    <p>{{totalAccount?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     <div class="cpanel cpanel-skyblue">
     <div class="icon-part">
-    <i class="fa fa-comments" aria-hidden="true"></i><br>
-    <small>Mentions</small>
-    <p>104</p>
+    <i class="fa fa-users" aria-hidden="true"></i><br>
+    <small>Discharge Patient</small>
+    <p>{{totalDischargePatient?.length}}</p>
     </div>
     <div class="card-content-part">
-    <a href="#">More Details </a>
+   <br>
     </div>
     </div>
     </div>

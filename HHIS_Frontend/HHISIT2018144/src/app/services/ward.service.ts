@@ -52,7 +52,7 @@ export class WardService {
     numberOfPatient: new FormControl('',Validators.required),
     numberOfDeath: new FormControl('',Validators.required),
     hospitalId: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
+    hospitalName: new FormControl('',Validators.required),
   });
 
   initializewardSectionFormGroup() {
@@ -66,7 +66,7 @@ export class WardService {
       patientName:"null", 
       hospitalId: localStorage.getItem('id'),
       patientNIC:"null",
-      hospitalName:localStorage.getItem('username')
+      hospitalName:localStorage.getItem('hospitalName')
     
   });
   }
@@ -82,7 +82,7 @@ export class WardService {
       patientName:"null", 
       hospitalId: localStorage.getItem('id'),
       patientNIC:"null",
-      hospitalName:localStorage.getItem('username')
+      hospitalName:localStorage.getItem('hospitalName')
     
   });
   }
@@ -94,7 +94,7 @@ export class WardService {
       numberOfPatient:"",
       numberOfDeath:"",
       hospitalId:localStorage.getItem('id'),
-      username:localStorage.getItem('username')
+      hospitalName:localStorage.getItem('hospitalName')
   });
   }
    //insert ward details
@@ -126,23 +126,33 @@ export class WardService {
 
   //get ward details
   get_ward(){
-    let username = localStorage.getItem("username");
-    let url = server_addr + '/getWardDetails/' + username;
+    let hospitalName = localStorage.getItem("hospitalName");
+    let url = server_addr + '/getWardDetails/' + hospitalName;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.get(url,{headers, responseType: 'json' });
   }
 
-    //get ward section details
-    get_wardSection(data:any){
-      let username = localStorage.getItem("username");
-      let url = server_addr + '/getWardBy/' + data + '/' + username;
+    	// get ward patient by hospital email id details
+      getWardPatientBy(){
+      let hospitalName = localStorage.getItem("hospitalName");
+      let url = server_addr + '/getWardPatientByEmail/'  + hospitalName;
       let token = localStorage.getItem('token');
       let tokenStr='Bearer '+token;
       const headers=new HttpHeaders().set("Authorization",tokenStr);
       return this.http.get(url,{headers, responseType: 'json' });
     }
+
+      //get ward section details
+      get_wardSection(data:any){
+        let hospitalName = localStorage.getItem("hospitalName");
+        let url = server_addr + '/getWardBy/' + data + '/' + hospitalName;
+        let token = localStorage.getItem('token');
+        let tokenStr='Bearer '+token;
+        const headers=new HttpHeaders().set("Authorization",tokenStr);
+        return this.http.get(url,{headers, responseType: 'json' });
+      }
 
   populateForm(ward: any) {
     this.wardForm.setValue(ward);
@@ -193,8 +203,8 @@ export class WardService {
 
       //get ward section details
     getwardSectionPatient(){
-      let username = localStorage.getItem("username");
-      let url = server_addr + '/getWardPatientBy/' + username;
+      let hospitalName = localStorage.getItem("hospitalName");
+      let url = server_addr + '/getWardPatientBy/' + hospitalName;
       let token = localStorage.getItem('token');
       let tokenStr='Bearer '+token;
       const headers=new HttpHeaders().set("Authorization",tokenStr);

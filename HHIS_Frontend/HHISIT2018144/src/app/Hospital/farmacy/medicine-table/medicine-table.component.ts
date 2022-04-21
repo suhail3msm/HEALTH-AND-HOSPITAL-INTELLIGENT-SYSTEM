@@ -15,7 +15,7 @@ import { DoctorService } from 'src/app/services/doctor.service';
   styleUrls: ['./medicine-table.component.scss']
 })
 export class MedicineTableComponent implements OnInit {
-  numberOfPatient = 5;
+  numberOfPatient:any;
   ELEMENT_DATA: exportMedicine[]=[];
   displayedColumns:string[]=['medicineName','medicineQnt','medicineTabs','uploadDate','action'];
   dataSource = new MatTableDataSource<exportMedicine>(this.ELEMENT_DATA);
@@ -28,6 +28,7 @@ export class MedicineTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMedicineInfo();
+    this.getPatientPendingStatus();
   }
 
   getMedicineInfo(){
@@ -111,6 +112,10 @@ export class MedicineTableComponent implements OnInit {
     });
   }
 
-
+  getPatientPendingStatus(){
+    this.service.getPatientPendingStatus().subscribe(res=>{
+      this.numberOfPatient=res;
+    })
+  }
 
 }

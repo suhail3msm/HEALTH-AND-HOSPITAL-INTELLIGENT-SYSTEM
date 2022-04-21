@@ -32,22 +32,34 @@ export class WardComponent implements OnInit {
 
   constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private service:WardService,private router:Router) { }
 
+
+  totalAdmitPatients:any;
+  totalDischargePatient:any;
   
 
   ngOnInit(): void {
     this.get_ward();
     this.getDischargePatientDetails();
+    this.getWardPatientByEmail();
   }
   get_ward(){
     this.service.get_ward().subscribe(res=>{
+     
       this.dataSource.data=res as exportWard[];
       this.dataSource.paginator = this.paginator;
       console.log(this.dataSource.data);
     })
   }
 
+  getWardPatientByEmail(){
+    this.service.getWardPatientBy().subscribe((res:any)=>{
+      this.totalAdmitPatients=res.filter((status:{status:string}) => status.status=="no");
+    })
+  }
+
   getDischargePatientDetails(){
     this.service.getwardSectionPatient().subscribe(res=>{
+      this.totalDischargePatient=res;
       this.dataSource1.data=res as exportDischargePatient[];
       this.dataSource1.paginator = this.paginator;
       console.log(this.dataSource1.data);

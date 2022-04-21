@@ -27,7 +27,7 @@ export class PharmacyService {
       medicineQnt:"",
       medicineTabs:"",
       uploadDate:"",
-      hospitalName:localStorage.getItem('username')
+      hospitalName:localStorage.getItem('hospitalName')
   });
   }
 
@@ -42,7 +42,7 @@ export class PharmacyService {
 
   //get medicine details
   getMedicineDetails(){
-    let hospitalName = localStorage.getItem("username");
+    let hospitalName = localStorage.getItem("hospitalName");
     let url = server_addr + '/getMedicineBy/' + hospitalName;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
@@ -70,7 +70,7 @@ export class PharmacyService {
 
    //count new patient Medicine details
    getPatientPendingStatus(){
-    let hospitalName = localStorage.getItem("username");
+    let hospitalName = localStorage.getItem("hospitalName");
     let url = server_addr + '/getPendingStatus/' + hospitalName;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
@@ -96,6 +96,17 @@ export class PharmacyService {
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.get(url,{headers, responseType: 'json' });
   }
+
+  //getUserMedicineDetailsByHospitalName
+  getUserMedicineDetailsByHospitalName(){
+    let hospitalName = localStorage.getItem("hospitalName");
+    let url = server_addr + '/getUserMedicineDetailsByHospitalName/' + hospitalName;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
   populateForm(medicine: any) {
     medicine.hospitalName=localStorage.getItem('username');
     medicine.medicineQnt=medicine.medicineQnt/medicine.medicineTabs;

@@ -20,7 +20,7 @@ export class HospitalRegisterFormComponent implements OnInit {
 
     
 
-      this.HHISservice.saveHospital(this.HHISservice.hospitalForm.value).subscribe(res=>{
+      this.HHISservice.saveHospital(this.HHISservice.hospitalForm.value).subscribe((res:any)=>{
         console.log(res);
         this.data=res;
         if(this.data.error==null){

@@ -34,7 +34,7 @@ export class HhisServiceService {
 		password: new FormControl('',Validators.required),
     oldPassword: new FormControl('',Validators.required),
 		role: new FormControl('',Validators.required),
-		hospitalName: new FormControl(''),
+		hospitalName: new FormControl('')
   });
 
   //hhssLoginForm

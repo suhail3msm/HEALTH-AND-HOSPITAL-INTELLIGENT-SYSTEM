@@ -10,7 +10,7 @@
   </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/staff" *ngIf="role=='hospital' || role=='admin'"> <mat-icon>person_add</mat-icon> Staff </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/doctor"*ngIf="role=='hospital' || role=='admin'"> <mat-icon >bubble_chart</mat-icon>Add Doctor </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/ward" *ngIf="role=='hospital' || role=='admin'"> <mat-icon> business</mat-icon> Ward </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/ward" *ngIf="role=='hospital' || role=='admin' || role=='doctor' || role=='doctor'"> <mat-icon> business</mat-icon> Ward </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/pharmacy" *ngIf="role=='hospital' || role=='admin' || role=='pharmacist'"> <mat-icon>add_to_queue</mat-icon> Pharmacy </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/prescription" *ngIf="role=='doctor'"> <mat-icon>fingerprint</mat-icon> Prescription </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/searchPatient" *ngIf="role=='doctor'"> <mat-icon>search</mat-icon> Prescription </a>
