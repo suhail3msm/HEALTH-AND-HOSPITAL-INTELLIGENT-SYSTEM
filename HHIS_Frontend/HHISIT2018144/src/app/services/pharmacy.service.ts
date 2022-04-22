@@ -107,6 +107,16 @@ export class PharmacyService {
     return this.http.get(url,{headers, responseType: 'json' });
   }
 
+  //get UserMedicine Accept Details By Hospital Name
+  getUserMedicineAcceptDetailsByHospitalName(){
+    let hospitalName = localStorage.getItem("hospitalName");
+    let url = server_addr + '/getUserMedicineAcceptDetailsByHospitalName/' + hospitalName;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
   populateForm(medicine: any) {
     medicine.hospitalName=localStorage.getItem('username');
     medicine.medicineQnt=medicine.medicineQnt/medicine.medicineTabs;

@@ -4,7 +4,7 @@
       <button  mat-raised-button color="warn" (click)="cancel()">X</button> </div>
 </div>
 <mat-dialog-content class="mat-typography">
-  <form class="form-card"  [formGroup]="doctorService.medicineDescriptionForm">
+  <form class="form-card"  [formGroup]="doctorService.medicineDescriptionForm" (submit)="onSubmit()">
 
 
       <div class="row justify-content-between text-left">
@@ -36,6 +36,12 @@
         
     </div>
    
+  </div>
+
+  <div  class="row justify-content-between text-left"  *ngIf="role=='pharmacist'">
+    <div class="form-group col-sm-12 flex-column d-flex" > 
+      <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" >Accept</button> 
+    </div>
   </div>
 </form>
 </mat-dialog-content>

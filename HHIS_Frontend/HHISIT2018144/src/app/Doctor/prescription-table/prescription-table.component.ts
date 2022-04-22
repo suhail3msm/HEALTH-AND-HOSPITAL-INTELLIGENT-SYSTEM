@@ -85,7 +85,7 @@ export class PrescriptionTableComponent implements OnInit {
 
   getMedicineInfo(){
     this.service.patientDescriptionDetails().subscribe(res=>{
-      this.totalPatient =res
+      this.totalPatient =res;
       this.accept = this.totalPatient.filter((status: { status: string; }) => status.status === "accept");
       this.pending = this.totalPatient.filter((status: { status: string; }) => status.status === "pending");
       this.dataSource.data=res as exportUser[];

@@ -13,10 +13,12 @@ import { DoctorPrescriptionComponent } from './Doctor/doctor-prescription/doctor
 import { AccountTableComponent } from './Hospital/Accounts/account-table/account-table.component';
 import { PrescriptionTableComponent } from './Doctor/prescription-table/prescription-table.component';
 import { SearchPatientComponent } from './Doctor/search-patient/search-patient.component';
+import { UserDashboardComponent } from './userDetails/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
   {path:'index',component:IndexComponent},
+  {path:'UserDashboard',component:UserDashboardComponent},
   {path:'admin',component:AdminComponent,canActivate:[AuthGuardGuard],children:[
     { path: 'das/home', canActivate:[AuthGuardGuard],component: HomeComponent},
     { path: 'das/dashboard', canActivate:[AuthGuardGuard],component: DashboardComponent , data: {

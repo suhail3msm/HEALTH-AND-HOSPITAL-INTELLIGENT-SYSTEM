@@ -57,6 +57,10 @@ export class IndexComponent implements OnInit {
       window.location.replace('/admin/das/prescription');
     }else if(this.role=="pharmacist"){
       window.location.replace('/admin/das/pharmacy');
+    }else if(this.role=="nurse"){
+      window.location.replace('/admin/das/ward');
+    }else{
+      window.location.replace('/UserDashboard');
     }
   }
 

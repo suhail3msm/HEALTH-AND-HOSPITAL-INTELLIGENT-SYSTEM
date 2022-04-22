@@ -96,7 +96,7 @@ export class SearchPatientComponent implements OnInit {
     this.myProfile();
   }
 
-
+ // Get patient NIC 
     getNic(event:any){
       this.show=false;
       this.patientName="";
@@ -104,7 +104,7 @@ export class SearchPatientComponent implements OnInit {
       this.age="";
       localStorage.removeItem('nic');
       const filterValue = (event.target as HTMLInputElement).value;
-        if(filterValue.length==9 || filterValue.length==10 || filterValue.length==12){
+        if(filterValue.length==10 || filterValue.length==12){
           this.valid=true;
           this.userService.getUserDetailsByNic(filterValue).subscribe((res:any)=>{
             if(res){
@@ -136,13 +136,15 @@ export class SearchPatientComponent implements OnInit {
         this.doctorService.get_Doctor().subscribe(res=>{
           this.dataSet=res;
           this.doctorData=this.dataSet.filter((email:{email:string;}) => email.email==this.username);
-          this.name=this.doctorData.map((name:{name:string;}) => name.name);
+          this.name=this.doctorData.filter((name:{name:string;}) => name.name);
+          console.log("name")
+          console.log(this.doctorData)
           localStorage.setItem('name',this.name);
          
         })
       
     }
-
+//  get sugar level
     getSugar(){
       this.userService.getBloodSugar().subscribe((res:any) => {
         if(res){
@@ -162,7 +164,7 @@ export class SearchPatientComponent implements OnInit {
         }
       })
     }
-
+//  get pressure level
     getPressure(){
       this.userService.getBloodPressure().subscribe((res:any) => {
         if(res){
@@ -185,7 +187,7 @@ export class SearchPatientComponent implements OnInit {
         
       })
     }
-
+//  insert sugar level
     addSugar(){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -202,7 +204,7 @@ export class SearchPatientComponent implements OnInit {
         }
       });
     }
-
+//  insert pressure level
     addPressure(){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -219,6 +221,7 @@ export class SearchPatientComponent implements OnInit {
         }
       });
     }
+    //  get patient hospital visited times
 getPatientHospitalVisit(){
   this.userService.getPatientMedicineByNic().subscribe((res:any) => {
     this.PatientHospitalVisit=res.length;
@@ -226,12 +229,14 @@ getPatientHospitalVisit(){
       this.dataSource.paginator = this.paginator;
   });
 }
+ //  get patient hospital admit times
 getPatientHospitalAdmit(){
   this.userService.getPatientWardDetailsByNIC().subscribe((res:any) => {
     this.PatientHospitalAdmit=res.length;
   });
 }
 
+ //  get MedicineMonthlyCount
 getMedicineMonthlyCount(){
   this.userService.getMedicineMonthlyCountByNic().subscribe((res:any) => {
     if(res){
@@ -257,6 +262,7 @@ applyFilter(event:Event){
   const filterValue = (event.target as HTMLInputElement).value;
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
+
 onEdit(element:any){
   for(let i=0;element.medicineName.length>i;i++){
    this.doctorService.onaddform();

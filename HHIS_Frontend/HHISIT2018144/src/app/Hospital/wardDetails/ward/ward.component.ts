@@ -53,7 +53,8 @@ export class WardComponent implements OnInit {
 
   getWardPatientByEmail(){
     this.service.getWardPatientBy().subscribe((res:any)=>{
-      this.totalAdmitPatients=res.filter((status:{status:string}) => status.status=="no");
+      console.log(res)
+      this.totalAdmitPatients=res.filter((status:{status:string}) => status.status!="no");
     })
   }
 
@@ -165,6 +166,12 @@ export class WardComponent implements OnInit {
 onViewDischargePatient(data:any):void{
   
 
+}
+
+onDelete(element:any){
+  this.service.deleteWardById(element.id).subscribe(res=>{
+    this.get_ward();
+  })
 }
 
 

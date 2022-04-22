@@ -64,6 +64,8 @@ import { HospitalRegisterFormComponent } from './index/hospital-register-form/ho
 import {MatSelectModule} from '@angular/material/select';
 import { ViewHospitalProfileComponent } from './header/view-hospital-profile/view-hospital-profile.component';
 import { SettingComponent } from './header/setting/setting.component';
+import { UserDashboardComponent } from './userDetails/user-dashboard/user-dashboard.component';
+import { UserHomeComponent } from './userDetails/user-home/user-home.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +104,8 @@ import { SettingComponent } from './header/setting/setting.component';
     HospitalRegisterFormComponent,
     ViewHospitalProfileComponent,
     SettingComponent,
+    UserDashboardComponent,
+    UserHomeComponent,
   ],
   imports: [
     BrowserModule,

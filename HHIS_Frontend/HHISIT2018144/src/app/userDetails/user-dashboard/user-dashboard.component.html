@@ -1,0 +1,79 @@
+<mat-toolbar style="background: radial-gradient(circle, rgba(174,228,238,1) 0%, rgba(148,187,233,1) 100%);">
+    <mat-toolbar-row class="justify-content-between">
+      <button mat-icon-button>
+        HHSS
+      </button>
+      <div class="row mr-2 ml-auto">
+        <ul class="row m-0 align-items-center">
+          <li>
+            <button
+              mat-button
+              [matMenuTriggerFor]="menu"
+              class="user mt-2 d-flex align-items-center"
+            >
+              <img src="../assets/image/user.png" alt="" class="user-image mr-1 p-2" />
+  
+              {{username}}
+              <mat-icon class="user-image-icon ml-1"
+                >keyboard_arrow_down</mat-icon
+              >
+            </button>
+            <mat-menu #menu="matMenu">
+             
+                <button mat-menu-item >
+                  <mat-icon>account_circle</mat-icon>
+                  My Profile
+                </button>
+                <button mat-menu-item (click)="setting()">
+                  <mat-icon>settings</mat-icon>
+                  Setting
+                </button>
+                <button mat-menu-item (click)="logout()" >
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+              </button>
+              
+            </mat-menu>
+            
+          
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+
+  <mat-tab-group backgroundColor="primary" color="accent" headerPosition="below" mat-align-tabs="center">
+    <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">home </mat-icon>&nbsp;
+           Home
+        </ng-template>
+       <app-user-home></app-user-home>
+      </mat-tab>
+
+     <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">local_hospital</mat-icon>&nbsp;
+      Find Hospital
+    </ng-template>
+    Content 1
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>&nbsp;
+      First
+    </ng-template>
+    Content 1
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">thumb_up</mat-icon>&nbsp;
+      First
+    </ng-template>
+    Content 1
+  </mat-tab>
+
+  </mat-tab-group>

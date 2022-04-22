@@ -114,6 +114,21 @@
               <div class="container">
                 <div class="row justify-content-between text-left">
                   <div class="con-md-12">
+                    <br>
+                    <div class="container staffTableTop">
+                      <div class="row">
+                        <div class="col-sm-6">
+                         
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-form-field fxFlex="100%">
+                            <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" style="margin-top: 10px;" >
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <br>
                     <!--Patient Medicine Table-->
 
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">

@@ -80,11 +80,141 @@
         <span matBadge="{{numberOfPatient }}" matBadgeOverlap="false"> New Patients</span>
        
       </ng-template>
-      Content 1
+
+      <br>
+    <div class="container staffTableTop">
+      <div class="row">
+        <div class="col-sm-6">
+         
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field fxFlex="100%">
+            <input matInput type="text" (keyup)="applyFilter1($event)" placeholder="Filter" style="margin-top: 10px;" >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    
+    <br>
+        <!--Patient Medicine Table-->
+
+        <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8 staffTable">
+          <ng-container matColumnDef="patientNic">
+            <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+            <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hospitalName">
+            <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="numberOfDay">
+            <th mat-header-cell *matHeaderCellDef> Medicine Use Days </th>
+            <td mat-cell *matCellDef="let element"> {{element.numberOfDay}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="descrDate">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.descrDate}} {{element.descrMonth}} {{element.descrYear}} </td>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+            <button mat-icon-button  matTooltip="View">
+              <mat-icon color="primary" (click)="onViewPatientMedicineDetails(element)">visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+      
+        </table>
+        
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons 
+        aria-label="Select page of periodic elements" class="staffTable">
+      </mat-paginator>
+<br>
+        <!--End Table-->
     </mat-tab>
-  <mat-tab label="Third"> 
+  <mat-tab label="Medicine History"> 
     
    
+    <br>
+    <div class="container staffTableTop">
+      <div class="row">
+        <div class="col-sm-6">
+         
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field fxFlex="100%">
+            <input matInput type="text" (keyup)="applyFilter1($event)" placeholder="Filter" style="margin-top: 10px;" >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    
+    <br>
+        <!--Patient Medicine Table-->
+
+        <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8 staffTable">
+          <ng-container matColumnDef="patientNic">
+            <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+            <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="hospitalName">
+            <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="numberOfDay">
+            <th mat-header-cell *matHeaderCellDef> Medicine Use Days </th>
+            <td mat-cell *matCellDef="let element"> {{element.numberOfDay}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="descrDate">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.descrDate}} {{element.descrMonth}} {{element.descrYear}} </td>
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+            <button mat-icon-button  matTooltip="View">
+              <mat-icon color="primary" (click)="onViewPatientMedicineDetails(element)">visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+      
+        </table>
+        
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons 
+        aria-label="Select page of periodic elements" class="staffTable">
+      </mat-paginator>
+<br>
+        <!--End Table-->
  
   </mat-tab>
 </mat-tab-group>

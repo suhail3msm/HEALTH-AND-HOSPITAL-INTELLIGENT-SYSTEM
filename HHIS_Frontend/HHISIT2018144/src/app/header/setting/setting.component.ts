@@ -21,6 +21,7 @@ export class SettingComponent implements OnInit {
 
   SetSetting(){
     this.HHISservice.gethhssLoginFormByEmailId().subscribe((res:any) => {
+      console.log(res)
       res.oldPassword=res.password;
       res.password="";
       console.log(res);

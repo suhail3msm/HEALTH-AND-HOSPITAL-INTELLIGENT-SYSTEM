@@ -106,6 +106,7 @@ export class WardService {
     return this.http.post(url,data,{headers, responseType: 'json' });
   }
 
+
     //insert ward section details
     insert_wardSection(data:any){
       let url = server_addr + '/saveWardSectionDeatils';
@@ -113,6 +114,23 @@ export class WardService {
       let tokenStr='Bearer '+token;
       const headers=new HttpHeaders().set("Authorization",tokenStr);
       return this.http.post(url,data,{headers, responseType: 'json' });
+    }
+ //insert ward section details2
+ insert_wardSection1(data:any){
+  let url = server_addr + '/saveWardSectionDeatils2';
+  let token = localStorage.getItem('token');
+  let tokenStr='Bearer '+token;
+  const headers=new HttpHeaders().set("Authorization",tokenStr);
+  return this.http.post(url,data,{headers, responseType: 'json' });
+}
+
+        //Delete Ward By ID
+    deleteWardById(data:any){
+      let url = server_addr + '/deleteWardBy/' + data;
+      let token = localStorage.getItem('token');
+      let tokenStr='Bearer '+token;
+      const headers=new HttpHeaders().set("Authorization",tokenStr);
+      return this.http.delete(url,{headers, responseType: 'json' });
     }
 
   //update ward details

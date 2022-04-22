@@ -14,7 +14,11 @@ import { DoctorPrescriptionComponent } from '../doctor-prescription/doctor-presc
 export class EditDoctorPrescriptionComponent implements OnInit {
 
   constructor(public snackBar: MatSnackBar,public doctorService:DoctorService,private userService:UserService,private dialogRef: MatDialogRef<DoctorPrescriptionComponent>) { }
-    ngOnInit(): void {
+  
+  role=localStorage.getItem("role");
+  elementData:any;
+
+  ngOnInit(): void {
    
     }
   
@@ -28,4 +32,23 @@ export class EditDoctorPrescriptionComponent implements OnInit {
        }
         this.dialogRef.close();
         }
+
+        onSubmit(){
+          if(this.role=='pharmacist'){
+            this.doctorService.medicineDescriptionForm.value.patientName=this.doctorService.medicineDescriptionForm.value.patientName;
+            this.doctorService.medicineDescriptionForm.value.age=this.doctorService.medicineDescriptionForm.value.age;
+            this.doctorService.medicineDescriptionForm.value.status="accept";
+            this.doctorService.medicineDescriptionForm.value.doctorEmail=this.doctorService.medicineDescriptionForm.value.doctorEmail;
+            this.doctorService.medicineDescriptionForm.value.hospitalName=localStorage.getItem('hospitalName');
+            this.doctorService.medicineDescriptionForm.value.descrDate=this.doctorService.medicineDescriptionForm.value.descrDate;
+            this.doctorService.patientMadicineTable(this.doctorService.medicineDescriptionForm.value).subscribe(res=>{
+              this.elementData=res;
+              for(let i=0;this.elementData.medicineName.length > i;i++){
+                this.doctorService.onRemoveMedicine(i);
+               }
+              console.log(res);
+            })
+          }
+          }
+        
 }

@@ -67,7 +67,7 @@ elementData:any;
 
   getNic(event:any){
     const filterValue = (event.target as HTMLInputElement).value;
-      if(filterValue.length==9 || filterValue.length==10 || filterValue.length==12){
+      if(filterValue.length==10 || filterValue.length==12){
         this.valid=true;
         this.userService.getUserDetailsByNic(filterValue).subscribe(res=>{
           if(res){

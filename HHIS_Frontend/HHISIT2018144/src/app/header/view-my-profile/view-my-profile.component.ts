@@ -29,7 +29,7 @@ export class ViewMyProfileComponent implements OnInit {
   }
 
   myProfile(){
-    if(this.role=="pharmacist"){
+    if(this.role=="pharmacist" || this.role=="nurse" || this.role=="admin"){
       this.staffService.getStaffByEmail().subscribe((res:any)=>{
         console.log(res);
         this.dataSet=res;
