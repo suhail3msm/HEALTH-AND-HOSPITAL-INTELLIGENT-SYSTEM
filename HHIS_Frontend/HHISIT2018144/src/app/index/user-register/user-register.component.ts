@@ -16,18 +16,29 @@ export class UserRegisterComponent implements OnInit {
   role="user";
   data:any
   onSubmit(){
-    this.service.saveUser(this.service.userRegister.value).subscribe(res=>{
-      console.log(res);
-      this.data=res;
-      if(this.data.error==null){
-        this.hhssService.saveLogin(this.service.userRegister.value.email,
-          this.service.userRegister.value.password,this.role,this.service.userRegister.value.NIC).subscribe(logUser=>{
-            console.log(logUser);
+
+    this.hhssService.saveLogin(this.service.userRegister.value.email,this.service.userRegister.value.password,this.role,this.service.userRegister.value.nic).subscribe(logUser=>{
+        if(logUser){
+            
+          this.service.saveUser(this.service.userRegister.value).subscribe(res=>{
+            console.log(res);
+            this.data=res;
+            if(this.data.error==null){
+              
+            }else{
+              alert(this.data.error);
+            }
+            
           })
-      }else{
-        alert(this.data.error);
-      }
-      
-    })
+
+        }else{
+          alert("Already Used Email Id Try New One... ");
+        }
+      },
+      (error) => {    //Error callback
+        console.error('error caught in component')
+        alert("Already Used Email Id Try New One...! ");
+      })
+
   }
 }

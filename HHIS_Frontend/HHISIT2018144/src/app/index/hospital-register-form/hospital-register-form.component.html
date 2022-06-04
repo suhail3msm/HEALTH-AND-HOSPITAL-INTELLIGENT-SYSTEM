@@ -1,0 +1,131 @@
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Hospital Register Form</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup] = "HHISservice.hospitalForm" (submit)="onSubmit()" class="form-card example-form">
+            
+        <div class="row justify-content-between text-left">
+             <div class="form-group col-md-6">
+                 <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Hospital Name</mat-label>
+                     <input type="email" matInput formControlName="hos_name"  placeholder="Ex. General Hospital">
+                     <mat-error *ngIf="HHISservice.hospitalForm.controls['hos_name']">
+                        Please enter a <strong>valid</strong> hospital Name
+                     </mat-error>
+                   </mat-form-field>
+             </div>
+             <div class="form-group col-md-6">
+                 <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Email</mat-label>
+                     <input type="email" matInput formControlName="email"  placeholder="Ex. pat@example.com">
+                     <mat-error *ngIf="HHISservice.hospitalForm.controls['email']">
+                        Please enter a <strong>valid</strong>  email address
+                     </mat-error>
+                   </mat-form-field>
+             </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Hospital Register No</mat-label>
+                    <input type="email" matInput formControlName="hospitalRagisterNo"  placeholder="Ex. 1234">
+                    <mat-error *ngIf="HHISservice.hospitalForm.controls['hospitalRagisterNo']">
+                       Please enter a <strong>valid</strong> Hospital Register No
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Specialty Hospitals</mat-label>
+                    <mat-select formControlName="specialtyHospitals">
+                      <mat-option value="Women’s hospitals">Women’s hospitals</mat-option>
+                      <mat-option value="Children’s hospitals">Children’s hospitals</mat-option>
+                      <mat-option value="Cardiac hospitals">Cardiac hospitals</mat-option>
+                      <mat-option value="Oncology hospitals">Oncology hospitals</mat-option>
+                      <mat-option value="Psychiatric hospitals">Psychiatric hospitals</mat-option>
+                      <mat-option value="Trauma centers">Trauma centers</mat-option>
+                      <mat-option value="Cancer treatment centers">Cancer treatment centers</mat-option>
+                      <mat-option value="No Specialty">No Specialty</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="HHISservice.hospitalForm.controls['specialtyHospitals']">
+                        Specialty Hospitals is <strong>Request</strong>
+                     </mat-error>  
+                </mat-form-field>
+                  
+            </div>
+       </div>
+       
+       <div class="row justify-content-between text-left">
+        <div class="form-group col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Telephone</mat-label>
+                <span matPrefix>+94 &nbsp;</span>
+                <input type="tel" matInput formControlName="phoneNo"  placeholder="555-555-1234">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-error *ngIf="HHISservice.hospitalForm.controls['phoneNo']">
+                   Please enter a <strong>valid</strong> Telephone
+                </mat-error>
+              </mat-form-field>
+        </div>
+        <div class="form-group col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>City</mat-label>
+                <input type="city" matInput formControlName="city"  placeholder="Ex. kahatagasdigiliya">
+                <mat-error *ngIf="HHISservice.hospitalForm.controls['city']">
+                   Please enter a <strong>valid</strong>  city 
+                </mat-error>
+              </mat-form-field>
+        </div>
+   </div>
+<div class="row justify-content-between text-left">
+    <div class="form-group col-md-12">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address"></textarea>
+            <mat-error *ngIf="HHISservice.hospitalForm.controls['email']">
+               Please enter a <strong>valid</strong> address
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+          
+<div class="row justify-content-between text-left">
+    <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>District</mat-label>
+            <input type="email" matInput formControlName="district"  placeholder="Ex. Anuradhapura">
+            <mat-error *ngIf="HHISservice.hospitalForm.controls['district']">
+               Please enter a <strong>valid</strong> district
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="HHISservice.hospitalForm.controls['password']">
+               Please enter a <strong>valid</strong>  password
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6 flex-column d-flex" >   
+                <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> 
+            </div>
+            <div class="form-group col-md-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="HHISservice.hospitalForm.invalid" >Update Info</button> 
+            </div>
+        </div>
+         
+     </form>
+</mat-dialog-content>
+

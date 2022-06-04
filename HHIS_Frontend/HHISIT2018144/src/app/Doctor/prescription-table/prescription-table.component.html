@@ -1,74 +1,118 @@
+<br>
+<div class="container">
+  <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+    <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(161, 205, 241) 95%,
+    rgb(7, 62, 113) 50%); border-radius: 5px;">
+      <p>Total Patient</p>
+      <i style="font-size: 25px; " class="fas fa-procedures"></i>
+      <h4>{{totalPatient?.length}}</h4>
+    </div>
+    <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(241, 206, 161) 95%,
+    rgb(188, 100, 0) 50%); border-radius: 5px;">
+      <p>Total Pending </p>
+      <i style="font-size: 25px; " class="fas fa-pause-circle"></i>
+      <h4>{{pending?.length}}</h4>
+    </div>
+    <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(161, 241, 184) 95%,
+    rgb(13, 87, 22) 50%); border-radius: 5px;">
+      <p>Total Accept </p>
+      <i style="font-size: 25px; " class="fas fa-thumbs-up"></i>
+      <h4>{{accept?.length}}</h4>
+    </div>
+  </div>
+</div>
+     
+     <br>
 
-      <br>
-      <div class="container staffTableTop">
-        <div class="row">
-          <div class="col-sm-6">
-            <button style="margin-top: 15px; margin-right: 2px; width: 60%;" mat-raised-button (click)="openDialog()">Create <mat-icon>queue</mat-icon></button>
+     <div class="container">
+       <div class="row justify-content-between text-left">
+         <div class="col-md-4">
+           <div style="margin-top: 150px;">
+            <canvas  baseChart
+            [data]="chartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'">
+            </canvas>
+           </div>
+           
+         </div>
+         <div class="col-md-8">
+
+          <div class="container staffTableTop">
+            <div class="row">
+              <div class="col-sm-6">
+                <button style="margin-top: 15px; margin-right: 2px; width: 60%;" mat-raised-button (click)="openDialog()">Create <mat-icon>queue</mat-icon></button>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field fxFlex="100%">
+                  <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" style="margin-top: 10px;" >
+                </mat-form-field>
+              </div>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <mat-form-field fxFlex="100%">
-              <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" style="margin-top: 10px;" >
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-      
-      <br>
-      
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
-      
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-        
-       
-          <ng-container matColumnDef="patientName">
-            <th mat-header-cell *matHeaderCellDef> Patient Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
-          </ng-container>
-        
           
-          <ng-container matColumnDef="patientNic">
-            <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
-            <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
-          </ng-container>
-        
+          <br>
           
-          <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef> Age </th>
-            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-          </ng-container>
-        
-        
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> status </th>
-            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-          </ng-container>
-      
-      
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element">
-            <button mat-icon-button  matTooltip="Edit">
-         
-              <mat-icon style="color:green" (click)="onEdit(element)">edit</mat-icon>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
+          
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
             
-            </button>
-      
-            <button mat-icon-button  matTooltip="Delete">
-              <mat-icon color="warn"(click)="onDelete(element)">delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-      
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
-        </table>
-        
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons 
-        aria-label="Select page of periodic elements" class="staffTable">
-      </mat-paginator>
+           
+              <ng-container matColumnDef="patientName">
+                <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+              </ng-container>
+            
+              
+              <ng-container matColumnDef="patientNic">
+                <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+                <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+              </ng-container>
+            
+              
+              <ng-container matColumnDef="descrDate">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.descrDate}} {{element.descrMonth}} {{element.descrYear}} </td>
+              </ng-container>
+            
+            
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+          
+          
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                <button mat-icon-button  matTooltip="Edit">
+             
+                  <mat-icon style="color:green" (click)="onEdit(element)">edit</mat-icon>
+                
+                </button>
+          
+                <button mat-icon-button  matTooltip="Delete">
+                  <mat-icon color="warn"(click)="onDelete(element)">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+            </table>
+            
+            <mat-paginator [pageSizeOptions]="[3, 5, 10, 20]"
+            showFirstLastButtons 
+            aria-label="Select page of periodic elements" class="staffTable">
+          </mat-paginator>
+         </div>
+       </div>
+     </div>
+
         <br>
      
   

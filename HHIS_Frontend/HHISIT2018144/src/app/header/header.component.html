@@ -1,4 +1,4 @@
-<mat-toolbar style="background-color: #dee8f5e5;">
+<mat-toolbar style="background-color: #e6eef9;">
   <mat-toolbar-row class="justify-content-between">
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
@@ -14,14 +14,28 @@
             <img src="../assets/image/user.png" alt="" class="user-image mr-1 p-2" />
 
             {{username}}
-            
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
           </button>
           <mat-menu #menu="matMenu">
+           
+              <button mat-menu-item (click)="myProfile()">
+                <mat-icon>account_circle</mat-icon>
+                My Profile
+              </button>
+              <button mat-menu-item (click)="setting()">
+                <mat-icon>settings</mat-icon>
+                Setting
+              </button>
+              <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              Logout
+            </button>
             
           </mat-menu>
-          <section>
-            <section></section>
-          </section>
+          
+        
         </li>
       </ul>
     </div>

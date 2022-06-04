@@ -1,0 +1,65 @@
+
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Account Setting</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup] = "HHISservice.hhssLoginForm" (submit)="onUpdatePassword()" class="form-card example-form">
+       
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6">
+                <p>Username</p>
+                <h3>{{dataSet?.username}}</h3>
+             </div>
+             <div class="form-group col-md-6">
+                 <p>Hospital Name</p>
+                <h3>{{dataSet?.hospitalName}}</h3>
+             </div>
+             
+        </div>
+      
+              
+<div class="row justify-content-between text-left">
+    <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Enter Old password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="oldPassword">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+          </mat-form-field>
+    </div>
+    <div class="form-group col-md-6">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Enter New password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="HHISservice.hospitalForm.controls['password']">
+               Please enter a <strong>valid</strong>  password
+            </mat-error>
+          </mat-form-field>
+    </div>
+</div>
+<input type="hidden" formControlName="hospitalName">
+<input type="hidden" formControlName="username">
+<input type="hidden" formControlName="role">
+<input type="hidden" formControlName="id">
+
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6 flex-column d-flex" >   
+                <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> 
+            </div>
+            <div class="form-group col-md-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true" [disabled]="HHISservice.hhssLoginForm.invalid" >Update Info</button> 
+            </div>
+        </div>
+         
+     </form>
+</mat-dialog-content>
+

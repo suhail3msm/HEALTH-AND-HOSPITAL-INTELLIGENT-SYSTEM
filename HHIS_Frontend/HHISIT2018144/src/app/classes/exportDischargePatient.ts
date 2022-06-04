@@ -6,4 +6,7 @@ export interface exportDischargePatient{
     wardId:string;
     patientName:string;
     patientNIC:string;
+    descrDate:string;
+    descrMonth:string;
+    descrYear:string;
     }

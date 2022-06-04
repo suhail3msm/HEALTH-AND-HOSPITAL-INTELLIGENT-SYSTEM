@@ -25,7 +25,7 @@
   <br>
   <mat-progress-bar mode="determinate" *ngIf="value>0" value="{{value}}"></mat-progress-bar><span *ngIf="value>0">{{value}} %</span>
 </form>
-
+<br>
 <div style="text-align: center;" *ngIf="value==100">
-      <button  mat-raised-button color="warn"[mat-dialog-close] style="width: 70%;">Close</button> 
+      <button  mat-raised-button color="accent"[mat-dialog-close] style="width: 70%;">Upload Successful</button> 
 </div>

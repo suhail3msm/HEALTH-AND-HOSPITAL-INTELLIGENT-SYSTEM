@@ -1,0 +1,175 @@
+<br>
+<div class="container">
+    <div class="row justify-content-between text-left">
+      <h2 *ngIf="patientName!=''" style="color: rgb(177, 0, 139);">{{patientName}}</h2>
+        <div class="col-ms-12">
+            <form class="example">
+                <input type="text" (keyup)="getNic($event)" placeholder="Search Patient NIC" autocomplete="off" placeholder="Patient NIC"> 
+              
+                <button type="button" ><i style="font-size: 17px;" class="fa fa-search"></i></button><br>
+                <span *ngIf="valid!=true" style="color: red;">{{error}}</span>
+              </form>
+        </div>
+    </div>
+    <br>
+    <div class="col-ms-12" *ngIf="show==true">
+        <br>
+        <mat-tab-group headerPosition="below">
+            <mat-tab label="First"><ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">color_lens</mat-icon>
+              Patient Dashboard
+            </ng-template>
+                <div class="container">
+                    <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+                      <div class="col-sm-3 sugar" (click)="addSugar()">
+                        <p>Blood Sugar</p>
+                        <i style="font-size: 25px;" class="fas fa-vial"></i>
+                        <h4>{{sugar}}</h4>
+                      </div>
+                      <div class="col-sm-3 pressure" (click)="addPressure()">
+                        <p>Blood Pressure </p>
+                        <i style="font-size: 25px;" class="fas fa-tachometer"></i>
+                        <h4>{{Pressure}}</h4>
+                      </div>
+                      <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(161, 241, 184) 95%,
+                      rgb(13, 87, 22) 50%); border-radius: 5px;">
+                        <p>Total Hospital Visit </p>
+                        <i style="font-size: 25px;" class="fas fa-hospital"></i>
+                        <h4>{{PatientHospitalVisit}}</h4>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+                      <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(161, 194, 241) 95%,
+                      rgb(13, 41, 87) 50%); border-radius: 5px;">
+                        <p>Total Hospital Admit </p>
+                        <i class="fas fa-bed"></i>
+                        <h4>{{PatientHospitalAdmit}}</h4>
+                      </div>
+                      <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(255, 187, 187) 95%,
+                      rgb(255, 0, 0) 50%); border-radius: 5px;">
+                        <p>Blood Group </p>
+                        <i class="fas fa-tint"></i>
+                        <h4>{{bloodGroup}}</h4>
+                      </div>
+                      <div class="col-sm-3 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(240, 241, 161) 95%,
+                      rgb(237, 237, 4) 50%); border-radius: 5px;">
+                        <p>Patient Age </p>
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h4>{{age}}</h4>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br>
+            </mat-tab>
+            <mat-tab label="Charts"> 
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">insert_chart</mat-icon>
+                Charts
+              </ng-template>
+              <div class="container">
+                <div class="row justify-content-between text-left">
+                    <div class="col-md-6">
+                      <canvas  baseChart
+                        [data]="sugarChart"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [type]="'bar'">
+                      </canvas>
+                    </div>
+                    <div class="col-md-6">
+                      <canvas  baseChart
+                        [data]="pressureChart"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [type]="'bar'">
+                    </canvas>
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-between text-left">
+                  <div class="col-md-6">
+                    <canvas  baseChart
+                      [data]="hospitalVisitChart"
+                      [options]="hospitalChartOptions"
+                      [plugins]="barChartPlugins"
+                      [legend]="barChartLegend"
+                      [type]="'bar'">
+                    </canvas>
+                  </div>
+                  <div class="col-md-6">
+                   
+                  </div>
+              </div>
+              </div>
+              <br><br>
+            </mat-tab>
+            <mat-tab label="Tables"> 
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">view_module</mat-icon>
+                Patient Medicine Details
+              </ng-template>
+              <div class="container">
+                <div class="row justify-content-between text-left">
+                  <div class="con-md-12">
+                    <!--Patient Medicine Table-->
+
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
+                      <ng-container matColumnDef="patientNic">
+                        <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+                        <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="hospitalName">
+                        <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="numberOfDay">
+                        <th mat-header-cell *matHeaderCellDef> Medicine Use Days </th>
+                        <td mat-cell *matCellDef="let element"> {{element.numberOfDay}} </td>
+                      </ng-container>
+                    
+                      <ng-container matColumnDef="descrDate">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.descrDate}} {{element.descrMonth}} {{element.descrYear}} </td>
+                      </ng-container>
+                    
+                    
+                      <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> status </th>
+                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                      </ng-container>
+                  
+                  
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button  matTooltip="View">
+                          <mat-icon color="primary" (click)="onEdit(element)">visibility</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  
+                    </table>
+                    
+                    <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"
+                    showFirstLastButtons 
+                    aria-label="Select page of periodic elements" class="staffTable">
+                  </mat-paginator>
+
+                    <!--End Table-->
+                  </div>
+                </div>
+              </div>
+              <br><br>
+            </mat-tab>
+          </mat-tab-group>
+    </div>
+</div>
+

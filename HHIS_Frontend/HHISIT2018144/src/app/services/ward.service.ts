@@ -66,7 +66,7 @@ export class WardService {
       patientName:"null", 
       hospitalId: localStorage.getItem('id'),
       patientNIC:"null",
-      hospitalName:localStorage.getItem('hospitalName')
+      hospitalName:localStorage.getItem('username')
     
   });
   }
@@ -82,7 +82,7 @@ export class WardService {
       patientName:"null", 
       hospitalId: localStorage.getItem('id'),
       patientNIC:"null",
-      hospitalName:localStorage.getItem('hospitalName')
+      hospitalName:localStorage.getItem('username')
     
   });
   }
@@ -94,7 +94,7 @@ export class WardService {
       numberOfPatient:"",
       numberOfDeath:"",
       hospitalId:localStorage.getItem('id'),
-      username:localStorage.getItem('hospitalName')
+      username:localStorage.getItem('username')
   });
   }
    //insert ward details
@@ -126,7 +126,7 @@ export class WardService {
 
   //get ward details
   get_ward(){
-    let username = localStorage.getItem("hospitalName");
+    let username = localStorage.getItem("username");
     let url = server_addr + '/getWardDetails/' + username;
     let token = localStorage.getItem('token');
     let tokenStr='Bearer '+token;
@@ -136,7 +136,7 @@ export class WardService {
 
     //get ward section details
     get_wardSection(data:any){
-      let username = localStorage.getItem("hospitalName");
+      let username = localStorage.getItem("username");
       let url = server_addr + '/getWardBy/' + data + '/' + username;
       let token = localStorage.getItem('token');
       let tokenStr='Bearer '+token;
@@ -193,7 +193,7 @@ export class WardService {
 
       //get ward section details
     getwardSectionPatient(){
-      let username = localStorage.getItem("hospitalName");
+      let username = localStorage.getItem("username");
       let url = server_addr + '/getWardPatientBy/' + username;
       let token = localStorage.getItem('token');
       let tokenStr='Bearer '+token;

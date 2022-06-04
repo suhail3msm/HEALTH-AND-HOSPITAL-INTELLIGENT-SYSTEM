@@ -1,8 +1,183 @@
 <br><br>
-<div class="container-fluid page">
-  <div class="page__content shadow  position-relative">
-    <div class="page__content-data position-absolute text-center">
-      Dashboard Content Goes Here
+<div class="content-wrapper">
+  <section class="dashboard-top-sec">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-8">
+                  <div class="bg-white top-chart-earn">
+                      <div class="row">
+                          <div class="col-sm-4 my-2 pe-0">
+                              <div class="last-month">
+                                  <h5>Dashboard</h5>
+                                  <p>Overview of Latest Month</p>
+
+                                  <div class="earn">
+                                      <h2>$3367.98</h2>
+                                      <p>Current Month Sales</p>
+                                  </div>
+                                  <div class="sale mb-3">
+                                      <h2>95</h2>
+                                      <p>Current Month Sales</p>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+                          <div class="col-sm-8 my-2 ps-0">
+                              <div class="classic-tabs">
+                                  
+                                      <canvas baseChart
+                                        [type]="'bar'"
+                                        [datasets]="barChartDatasets"
+                                        [labels]="barChartLabels"
+                                        [options]="barChartOptions"
+                                        [plugins]="barChartPlugins"
+                                        [legend]="barChartLegend">
+                                      </canvas>
+
+                         
+                              </div>
+
+
+                          </div>
+                      </div>
+
+                      <div class="wre-sec">
+                          <div class="row">
+                          
+                              <div class="col-md-4 col-sm-4 col-6 my-1 bdr-cls">
+                                  <div class="earn-view">
+                                      <span class="earn-icon referral"></span>
+
+                                      <div class="earn-view-text">
+                                          <p class="name-text">
+                                              Referral Earning
+                                          </p>
+                                          <h6 class="balance-text">
+                                              $1204.54
+                                          </h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-6 my-1 bdr-cls">
+                                  <div class="earn-view">
+                                      <span class="earn-icon sales"></span>
+
+                                      <div class="earn-view-text">
+                                          <p class="name-text">
+                                              Estimate Sales
+                                          </p>
+                                          <h6 class="balance-text">
+                                              $184.54
+                                          </h6>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-6 my-1 bdr-cls">
+                                  <div class="earn-view">
+                                      <span class="earn-icon earning"></span>
+
+                                      <div class="earn-view-text">
+                                          <p class="name-text">
+                                              Earning
+                                          </p>
+                                          <h6 class="balance-text">
+                                              $16984.54
+                                          </h6>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+              <div class="col-lg-4">
+                  <div class="bg-white top-chart-earn">
+                      <div class="traffice-title">
+                          <p>Traffice</p>
+                      </div>
+                      <div class="traffic">
+                          <div id="chart-2">
+                            <canvas baseChart
+                            [type]="'pie'"
+                            [datasets]="pieChartDatasets"
+                            [labels]="pieChartLabels"
+                            [options]="pieChartOptions"
+                            [plugins]="pieChartPlugins"
+                            [legend]="pieChartLegend">
+                            </canvas>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+
+  <div class="main-part">
+    <div class="cpanel">
+    <div class="icon-part">
+    <i class="fa fa-users" aria-hidden="true"></i><br>
+    <small>Members</small>
+    <p>985</p>
     </div>
-  </div>
-</div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    <div class="cpanel cpanel-green">
+    <div class="icon-part">
+    <i class="fa fa-money" aria-hidden="true"></i><br>
+    <small>Account</small>
+    <p>$ 452</p>
+    </div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    <div class="cpanel cpanel-orange">
+    <div class="icon-part">
+    <i class="fa fa-bell" aria-hidden="true"></i><br>
+    <small>Alert</small>
+    <p>11 New</p>
+    </div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    <div class="cpanel cpanel-blue">
+    <div class="icon-part">
+    <i class="fa fa-tasks" aria-hidden="true"></i><br>
+    <small>Task</small>
+    <p>85</p>
+    </div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    <div class="cpanel cpanel-red">
+    <div class="icon-part">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i><br>
+    <small>Cart</small>
+    <p>$ 45</p>
+    </div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    <div class="cpanel cpanel-skyblue">
+    <div class="icon-part">
+    <i class="fa fa-comments" aria-hidden="true"></i><br>
+    <small>Mentions</small>
+    <p>104</p>
+    </div>
+    <div class="card-content-part">
+    <a href="#">More Details </a>
+    </div>
+    </div>
+    </div>
