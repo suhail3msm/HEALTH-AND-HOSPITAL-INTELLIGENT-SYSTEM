@@ -1,0 +1,100 @@
+
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Appointment</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup] = "appointmentService.appointment" (submit)="onSubmit()" class="form-card example-form">
+            
+        <div class="row justify-content-between text-left">
+             <div class="form-group col-md-6">
+                 <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Full Name</mat-label>
+                     <input type="text" matInput formControlName="patientName" >
+                     <mat-error *ngIf="appointmentService.appointment.controls['patientName']">
+                        Please enter a <strong>valid</strong> Full Name
+                     </mat-error>
+                   </mat-form-field>
+             </div>
+             <div class="form-group col-md-6">
+                 
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Telephone</mat-label>
+                    <span matPrefix>+94 &nbsp;</span>
+                    <input type="tel" matInput formControlName="phoneNum"  placeholder="555-555-1234">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="appointmentService.appointment.controls['phoneNum']">
+                       Please enter a <strong>valid</strong> Telephone
+                    </mat-error>
+                  </mat-form-field>
+                    
+             </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>date</mat-label>
+                    <input type="date" matInput formControlName="appointmentDate" >
+                    <mat-error *ngIf="appointmentService.appointment.controls['appointmentDate']">
+                       Please enter a <strong>valid</strong> date
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>time</mat-label>
+                    <input type="time" matInput formControlName="appointmentTime" >
+                    <mat-error *ngIf="appointmentService.appointment.controls['appointmentTime']">
+                       Please enter a <strong>valid</strong> time
+                    </mat-error>
+                  </mat-form-field>
+                  
+            </div>
+       </div>
+       
+       <div class="row justify-content-between text-left">
+        <div class="form-group col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>injury</mat-label>
+                <input type="text" matInput formControlName="injury"  placeholder="fever">
+                <mat-error *ngIf="appointmentService.appointment.controls['injury']">
+                   Please enter a <strong>valid</strong> injury
+                </mat-error>
+              </mat-form-field>
+        </div>
+
+        <div class="form-group col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill" *ngIf="role=='hospital' || role=='admin' || role =='nurse'">
+                <mat-label>Select Doctor</mat-label>
+                <mat-select formControlName="doctorEmail">
+                  <mat-option *ngFor="let user of Users" value="{{user.email}}">{{user.name}} - {{user.doctorSpecialty}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="appointmentService.appointment.controls['doctorEmail']">
+                    Select Doctor is <strong>Request</strong>
+                 </mat-error>  
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill" *ngIf="role=='doctor' || role=='user'">
+                <mat-label>Doctor</mat-label>
+                <input type="text" matInput formControlName="doctorName">
+              </mat-form-field>
+        </div>
+   </div>
+
+<input type="hidden" formControlName="id">
+
+        <div class="row justify-content-between text-left" *ngIf="role=='hospital' || role=='admin' || role =='nurse'">
+            <div class="form-group col-md-6 flex-column d-flex" >   
+                <button (click)="Cancel(appointmentService.appointment.value)"  mat-raised-button color="warn"[mat-dialog-close]>Cancel Appointment</button> 
+            </div>
+            <div class="form-group col-md-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true"  >Accept Appointment</button> 
+            </div>
+        </div>
+         
+     </form>
+</mat-dialog-content>
+

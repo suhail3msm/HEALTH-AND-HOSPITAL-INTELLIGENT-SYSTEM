@@ -8,6 +8,7 @@ import { HhisServiceService } from 'src/app/services/hhis-service.service';
 })
 export class SettingComponent implements OnInit {
   hide = true;
+  role=localStorage.getItem('role');
   constructor(public HHISservice:HhisServiceService) { }
   dataSet:any;
   ngOnInit(): void {

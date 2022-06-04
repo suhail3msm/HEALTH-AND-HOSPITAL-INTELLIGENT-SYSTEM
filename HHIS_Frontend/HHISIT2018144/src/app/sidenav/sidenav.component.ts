@@ -17,4 +17,6 @@ export class SidenavComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(["/"]);
   }
+
+ 
 }

@@ -15,6 +15,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
 export class IndexComponent implements OnInit {
 
   response:any;
+  totalUser: any;
   constructor(private fb:FormBuilder,public HHISservice:HhisServiceService,private router:Router,public dialog: MatDialog,public snackBar: MatSnackBar) { }
 
   loginForm =this.fb.group({
@@ -24,9 +25,12 @@ export class IndexComponent implements OnInit {
   loginError ="";
 
   role:any;
+  totalHospital:any;
 
   ngOnInit(): void {
     this.covidCases();
+    this.getTotalHospital();
+    this.getTotalUser();
   }
 
   login(){
@@ -107,5 +111,19 @@ openHospital(){
       console.log(`Dialog result: ${result}`);
       
     });
+}
+
+// total hospital count
+getTotalHospital(){
+  this.HHISservice.getAllHospitalCount().subscribe(rep=>{
+    this.totalHospital=rep;
+  })
+}
+
+// total User count
+getTotalUser(){
+  this.HHISservice.getAllUserCount().subscribe(rep=>{
+    this.totalUser=rep;
+  })
 }
 }

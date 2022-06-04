@@ -1,47 +1,243 @@
-<div class="container">
+<br>
+<div class="container" style="background-color: rgb(255, 255, 255); padding-top: 10px;padding-bottom: 10px; border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
     <div class="row">
     <div class="col-md-3">
       <div class="card-counter primary">
         <i class="fa fa-code-fork"></i>
-        <span class="count-numbers">12</span>
-        <span class="count-name">Flowz</span>
+        <span class="count-numbers">{{PatientHospitalVisit}}</span>
+        <span class="count-name">Hospital visit</span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter danger">
         <i class="fa fa-ticket"></i>
-        <span class="count-numbers">599</span>
-        <span class="count-name">Instances</span>
+        <span class="count-numbers">{{bloodGroup}}</span>
+        <span class="count-name">Blood Group</span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter success">
         <i class="fa fa-database"></i>
-        <span class="count-numbers">6875</span>
-        <span class="count-name">Data</span>
+        <span class="count-numbers">{{Pressure}}</span>
+        <span class="count-name">Blood pressure</span>
       </div>
     </div>
 
     <div class="col-md-3">
       <div class="card-counter info">
         <i class="fa fa-users"></i>
-        <span class="count-numbers">35</span>
-        <span class="count-name">Users</span>
+        <span class="count-numbers">{{sugar}}</span>
+        <span class="count-name">Blood Sugar</span>
       </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card-counter success">
+        <i class="fa fa-database"></i>
+        <span class="count-numbers">{{PatientHospitalAdmit}}</span>
+        <span class="count-name">Hospital Admit</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card-counter info">
+        <i class="fa fa-users"></i>
+        <span class="count-numbers">{{age}}</span>
+        <span class="count-name">Age</span>
+      </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-counter danger">
+          <i class="fa fa-users"></i>
+          <span class="count-numbers">{{totalAppointmentAccept?.length}}</span>
+          <span class="count-name">Total Appointment</span>
+        </div>
+      </div>
+  </div>
+</div>
+<br>
+
+  <div class="container" style="margin-bottom: 10px;">
+      <div class="row justify-content-between">
+        <div class="col-md-6" style="background-color: white; padding:10px;margin: 10px; border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="row justify-content-between text-left">
+                <div class="con-md-12">
+                  <div class="container staffTableTop">
+                    <div class="row">
+                      <div class="col-sm-6">
+                       <h3 style="margin-top: 20px;">Medicine Details</h3>
+                      </div>
+                      <div class="col-sm-6">
+                        <mat-form-field fxFlex="100%">
+                          <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" style="margin-top: 10px;" >
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                  <!--Patient Medicine Table-->
+
+                  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
+                    <ng-container matColumnDef="patientNic">
+                      <th mat-header-cell *matHeaderCellDef> Patient NIC </th>
+                      <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="hospitalName">
+                      <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="numberOfDay">
+                      <th mat-header-cell *matHeaderCellDef> Medicine Use Days </th>
+                      <td mat-cell *matCellDef="let element"> {{element.numberOfDay}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="descrDate">
+                      <th mat-header-cell *matHeaderCellDef> Date </th>
+                      <td mat-cell *matCellDef="let element"> {{element.descrDate}} {{element.descrMonth}} {{element.descrYear}} </td>
+                    </ng-container>
+                  
+                  
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef> status </th>
+                      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                    </ng-container>
+                
+                
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
+                      <td mat-cell *matCellDef="let element">
+                      <button mat-icon-button  matTooltip="View">
+                        <mat-icon color="primary" (click)="onEdit(element)">visibility</mat-icon>
+                      </button>
+                    </td>
+                  </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                
+                  </table>
+                  
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                  showFirstLastButtons 
+                  aria-label="Select page of periodic elements" class="staffTable">
+                </mat-paginator>
+
+                  <!--End Table-->
+                </div>
+              </div>
+              <br>
+        </div>
+        <div class="col-md-5" style="border-radius: 5px; background-color: white;padding:10px;margin: 10px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+         
+            <canvas style="width: 100%;"  baseChart
+              [data]="sugarChart"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [type]="'line'">
+            </canvas>
+        
+        </div>
+      </div>
+  </div>
+
+  <div class="container" style="margin-bottom: 10px;">
+    <div class="row justify-content-between">
+      <div class="col-md-6" style="background-color: white; padding:10px;margin: 10px; border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        <canvas style="width: 100%;"  baseChart
+                      [data]="hospitalVisitChart"
+                      [options]="hospitalChartOptions"
+                      [plugins]="barChartPlugins"
+                      [legend]="barChartLegend"
+                      [type]="'bar'">
+                    </canvas>
+      </div>
+      <div class="col-md-5" style="border-radius: 5px; background-color: white;padding:10px;margin: 10px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+       
+        <canvas style="width: 100%;" baseChart
+        [data]="pressureChart"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [type]="'line'">
+    </canvas>
+      
+      </div>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 10px;">
+  <div class="row justify-content-between">
+    <div class="col-md-12" style="background-color: rgba(255, 255, 255, 0.726); padding:10px;margin: 10px; border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+      <div class="container">
+        <div class="row justify-content-between text-left">
+          <div class="con-md-12">
+            <br>
+            <div class="container staffTableTop">
+              <div class="row">
+                <div class="col-sm-6">
+                 <h2>Allergies</h2>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field fxFlex="100%">
+                    <input matInput type="text" (keyup)="applyFilter1($event)" placeholder="Filter" style="margin-top: 10px;" >
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            
+            <br>
+            <!--Patient Allergies Table-->
+
+            <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8 staffTable">
+              <ng-container matColumnDef="hospitalName">
+                <th mat-header-cell *matHeaderCellDef> Checkup Hospital </th>
+                <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="allergiesType">
+                <th mat-header-cell *matHeaderCellDef> Allergies Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.allergiesType}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="allergen">
+                <th mat-header-cell *matHeaderCellDef> Allergen </th>
+                <td mat-cell *matCellDef="let element"> {{element.allergen}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="reaction">
+                <th mat-header-cell *matHeaderCellDef> Reaction </th>
+                <td mat-cell *matCellDef="let element"> {{element.reaction}}</td>
+              </ng-container>
+          
+          
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                <button mat-icon-button  matTooltip="View">
+                  <mat-icon color="primary" (click)="viewAllergies(element)">visibility</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          
+              <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+          
+            </table>
+            
+           
+
+            <!--End Table-->
+            <br>
     </div>
   </div>
 </div>
 
-
-  <div class="container" style="height: 100px;">
-      <div class="row justify-content-between">
-        <div class="col-md-7" style="background-color: white; padding:10px;margin: 10px; border-radius: 5px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            ffd
-        </div>
-        <div class="col-md-4" style="background-color: white;padding:10px;margin: 10px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            
-        </div>
-      </div>
-  </div>
+  

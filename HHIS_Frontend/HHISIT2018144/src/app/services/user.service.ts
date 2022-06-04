@@ -47,6 +47,42 @@ export class UserService {
 		subervName: new FormControl('')
   })
 
+     //Allergies form
+     allergies: FormGroup = new FormGroup({
+      id: new FormControl(null),
+      patientNic: new FormControl(''),
+      insertDate: new FormControl('',Validators.required),
+      allergiesType: new FormControl('',Validators.required),
+      allergen: new FormControl('',Validators.required),
+      reaction: new FormControl('',Validators.required),
+      patientName: new FormControl(''),
+      hospitalName: new FormControl(''),
+      subervName: new FormControl('')
+    })
+
+    setDataAllergiesForm(data:any){
+      this.allergies.setValue(data);
+    }
+
+    //insert Allergies details
+   insertAllergies(data:any){
+    let url = server_addr + '/saveAllergies';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.post(url,data,{headers, responseType: 'json' });
+  }
+  
+  // get Allergies
+  getAllergies(){
+    let nic=localStorage.getItem("nic");
+    let url = server_addr + '/getAllergies/' + nic;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+}
+
    //insert blood Pressure details
    insertBloodPressure(data:any){
     let url = server_addr + '/saveBloodPressure';
@@ -65,15 +101,15 @@ export class UserService {
     return this.http.post(url,data,{headers, responseType: 'json' });
   }
 
-// get blood Pressure 
-getBloodPressure(){
-  let nic=localStorage.getItem("nic");
-  let url = server_addr + '/getBloodPressure/' + nic;
-  let token = localStorage.getItem('token');
-  let tokenStr='Bearer '+token;
-  const headers=new HttpHeaders().set("Authorization",tokenStr);
-  return this.http.get(url,{headers, responseType: 'json' });
-}
+  // get blood Pressure 
+  getBloodPressure(){
+    let nic=localStorage.getItem("nic");
+    let url = server_addr + '/getBloodPressure/' + nic;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
 
 // get blood Sugar 
 getBloodSugar(){

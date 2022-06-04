@@ -66,6 +66,21 @@ import { ViewHospitalProfileComponent } from './header/view-hospital-profile/vie
 import { SettingComponent } from './header/setting/setting.component';
 import { UserDashboardComponent } from './userDetails/user-dashboard/user-dashboard.component';
 import { UserHomeComponent } from './userDetails/user-home/user-home.component';
+import { FindHospitalComponent } from './userDetails/find-hospital/find-hospital.component';
+import {MatCardModule} from '@angular/material/card';
+import { GetAppointmentComponent } from './userDetails/get-appointment/get-appointment.component';
+import { HospitalAppointmentsComponent } from './Hospital/hospital-appointments/hospital-appointments.component';
+import { ViewAppointmentComponent } from './Hospital/hospital-appointments/view-appointment/view-appointment.component';
+import { DoctorAppointmentComponent } from './Doctor/doctor-appointment/doctor-appointment.component';
+import { AllergiesFormComponent } from './Doctor/allergies-form/allergies-form.component';
+import { StaffReportComponent } from './report/staff-report/staff-report.component';
+import { DoctorReportComponent } from './report/doctor-report/doctor-report.component';
+import { PharmacyReportComponent } from './report/pharmacy-report/pharmacy-report.component';
+import { WardReportComponent } from './report/ward-report/ward-report.component';
+import { PatientReportComponent } from './report/patient-report/patient-report.component';
+import { AllReportComponent } from './report/all-report/all-report.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -106,6 +121,18 @@ import { UserHomeComponent } from './userDetails/user-home/user-home.component';
     SettingComponent,
     UserDashboardComponent,
     UserHomeComponent,
+    FindHospitalComponent,
+    GetAppointmentComponent,
+    HospitalAppointmentsComponent,
+    ViewAppointmentComponent,
+    DoctorAppointmentComponent,
+    AllergiesFormComponent,
+    StaffReportComponent,
+    DoctorReportComponent,
+    PharmacyReportComponent,
+    WardReportComponent,
+    PatientReportComponent,
+    AllReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,7 +163,9 @@ import { UserHomeComponent } from './userDetails/user-home/user-home.component';
     MatBadgeModule,
     NgChartsModule,
     MatSelectModule,
-    
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     
   ],

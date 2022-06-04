@@ -11,12 +11,8 @@
               [matMenuTriggerFor]="menu"
               class="user mt-2 d-flex align-items-center"
             >
-              <img src="../assets/image/user.png" alt="" class="user-image mr-1 p-2" />
-  
-              {{username}}
-              <mat-icon class="user-image-icon ml-1"
-                >keyboard_arrow_down</mat-icon
-              >
+            
+              <mat-icon class="user-image-icon ml-1">menu</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
              
@@ -43,7 +39,7 @@
   </mat-toolbar>
   
 
-  <mat-tab-group backgroundColor="primary" color="accent" headerPosition="below" mat-align-tabs="center">
+  <mat-tab-group animationDuration="0ms" color="accent" headerPosition="below" mat-align-tabs="center">
     <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon">home </mat-icon>&nbsp;
@@ -55,17 +51,112 @@
      <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">local_hospital</mat-icon>&nbsp;
-      Find Hospital
+      Get Appointment
     </ng-template>
-    Content 1
+    <app-find-hospital></app-find-hospital>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">thumb_up</mat-icon>&nbsp;
-      First
+      View Appointment
     </ng-template>
-    Content 1
+   <!-- Start Appointment -->
+
+   <br>
+<div class="container staffTableTop">
+  <div class="row">
+    <div class="col-sm-6">
+       
+            <select (change)="applyFilter1($event)">
+              <option *ngFor="let appointment of appointments" value="{{appointment.appointmentDate}}">{{appointment.appointmentDate}}</option>
+            </select>
+    
+    </div>
+    <div class="col-sm-6">
+      <mat-form-field fxFlex="100%">
+        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" >
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row justify-content-between text-left">
+  
+    <div class="col-md-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 staffTable">
+
+        <ng-container matColumnDef="patientName">
+          <th mat-header-cell *matHeaderCellDef> Patient Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="patientNic">
+          <th mat-header-cell *matHeaderCellDef>Patient NIC </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientNic}} </td>
+        </ng-container>
+      
+        
+        <ng-container matColumnDef="appointmentDate">
+          <th mat-header-cell *matHeaderCellDef> date </th>
+          <td mat-cell *matCellDef="let element"> {{element.appointmentDate}} </td>
+        </ng-container>
+      
+      
+        <ng-container matColumnDef="appointmentTime">
+          <th mat-header-cell *matHeaderCellDef> Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.appointmentTime}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="injury">
+            <th mat-header-cell *matHeaderCellDef> Injury </th>
+            <td mat-cell *matCellDef="let element"> {{element.injury}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> 
+                <p *ngIf="element.status=='cancel'" style="color: red;">{{element.status}}</p> 
+                <p *ngIf="element.status=='pending'" style="color: rgb(37, 78, 227);">{{element.status}}</p> 
+                <p *ngIf="element.status=='accept'" style="color: rgb(0, 255, 13);">{{element.status}}</p> 
+            </td>
+          </ng-container>
+    
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+       
+          <button mat-icon-button  matTooltip="View">
+       
+            <mat-icon style="color:rgb(0, 66, 128)" (click)="onEdit(element)">visibility</mat-icon>
+          
+          </button>
+
+    
+        </td>
+      </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+      </table>
+      
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons 
+      aria-label="Select page of periodic elements" class="staffTable">
+    </mat-paginator>
+    </div>
+  </div>
+</div>
+
+
+<br><br>
+
+   <!-- End Appointment -->
   </mat-tab>
 
   <mat-tab>

@@ -173,7 +173,7 @@
                   
                     </table>
                     
-                    <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]"
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                     showFirstLastButtons 
                     aria-label="Select page of periodic elements" class="staffTable">
                   </mat-paginator>
@@ -184,6 +184,80 @@
               </div>
               <br><br>
             </mat-tab>
+
+            <mat-tab label="Tables"> 
+              <ng-template mat-tab-label>
+                <mat-icon>enhanced_encryption</mat-icon>
+                Allergies
+              </ng-template>
+              <div class="container">
+                <div class="row justify-content-between text-left">
+                  <div class="con-md-12">
+                    <br>
+                    <div class="container staffTableTop">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <button style="margin-top: 15px; margin-right: 2px; width: 60%;" mat-raised-button (click)="addAllergies()">Create <mat-icon>queue</mat-icon></button>
+                        </div>
+                        <div class="col-sm-6">
+                          <mat-form-field fxFlex="100%">
+                            <input matInput type="text" (keyup)="applyFilter1($event)" placeholder="Filter" style="margin-top: 10px;" >
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <br>
+                    <!--Patient Allergies Table-->
+
+                    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8 staffTable">
+                      <ng-container matColumnDef="hospitalName">
+                        <th mat-header-cell *matHeaderCellDef> Hospital Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="allergiesType">
+                        <th mat-header-cell *matHeaderCellDef> Allergies Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.allergiesType}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="allergen">
+                        <th mat-header-cell *matHeaderCellDef> Allergen </th>
+                        <td mat-cell *matCellDef="let element"> {{element.allergen}} </td>
+                      </ng-container>
+                    
+                      <ng-container matColumnDef="reaction">
+                        <th mat-header-cell *matHeaderCellDef> Reaction </th>
+                        <td mat-cell *matCellDef="let element"> {{element.reaction}}</td>
+                      </ng-container>
+                  
+                  
+                      <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button  matTooltip="View">
+                          <mat-icon color="primary" (click)="viewAllergies(element)">visibility</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                  
+                    </table>
+                    
+                    <mat-paginator [pageSizeOptions]="[2, 10, 20]"
+                    showFirstLastButtons 
+                    aria-label="Select page of periodic elements" class="staffTable">
+                  </mat-paginator>
+
+                    <!--End Table-->
+                  </div>
+                </div>
+              </div>
+              <br><br>
+            </mat-tab>
+
           </mat-tab-group>
     </div>
 </div>

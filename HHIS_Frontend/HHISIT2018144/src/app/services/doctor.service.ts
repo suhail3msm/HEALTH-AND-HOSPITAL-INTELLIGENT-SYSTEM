@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { exportUser } from '../classes/exportUser';
+
 
 const server_addr = "http://localhost:8082";
 
@@ -65,6 +64,7 @@ export class DoctorService {
     token: new FormControl(null),
     patientNic: new FormControl(''),
     patientName: new FormControl(''),
+    disease: new FormControl('',Validators.required),
     numberOfDay: new FormControl('',Validators.required),
     age: new FormControl(''),
     doctorEmail: new FormControl(''),
@@ -85,6 +85,7 @@ export class DoctorService {
       patientName:"",
       numberOfDay:"",
       age:"",
+      disease:'',
       doctorEmail:localStorage.getItem('username'),
       hospitalName:localStorage.getItem('hospitalName'),
       status:"Pending",
@@ -171,6 +172,16 @@ deletemedicineDescriptionFormById(id:any){
     return this.http.get(url,{headers, responseType: 'json' });
   }
 
+     //get Doctor details
+     getDoctorByEmail(data:any){
+      let email = data;
+      let url = server_addr + '/findDoctorByEmail/' + email;
+      let token = localStorage.getItem('token');
+      let tokenStr='Bearer '+token;
+      const headers=new HttpHeaders().set("Authorization",tokenStr);
+      return this.http.get(url,{headers, responseType: 'json' });
+    }
+
 ViewDoctorDetails(data:any){
   this.dataSet=data;
 }
@@ -191,6 +202,16 @@ ViewDoctorDetails(data:any){
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.post(url,data,{headers, responseType: 'json' });
   }
+
+  getDoctorDateBetween(fromDate:any,toDate:any){
+    let email = localStorage.getItem("username");
+    let url = server_addr + '/findDoctor/'+ fromDate +'/'+ toDate;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
 }
 
 

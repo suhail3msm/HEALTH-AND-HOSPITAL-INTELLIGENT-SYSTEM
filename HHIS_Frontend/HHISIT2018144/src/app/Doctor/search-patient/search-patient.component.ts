@@ -5,11 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ChartConfiguration, ChartData } from 'chart.js';
+import { exportAllergies } from 'src/app/classes/exportAllergies';
 import { exportUser } from 'src/app/classes/exportUser';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { UserService } from 'src/app/services/user.service';
 import { BloodPressureComponent } from 'src/app/userDetails/blood-pressure/blood-pressure.component';
 import { BloodSugarComponent } from 'src/app/userDetails/blood-sugar/blood-sugar.component';
+import { AllergiesFormComponent } from '../allergies-form/allergies-form.component';
 import { DoctorPrescriptionComponent } from '../doctor-prescription/doctor-prescription.component';
 import { EditDoctorPrescriptionComponent } from '../edit-doctor-prescription/edit-doctor-prescription.component';
 
@@ -37,10 +39,16 @@ export class SearchPatientComponent implements OnInit {
   displayedColumns:string[]=['patientNic','hospitalName','numberOfDay','descrDate','status','action'];
   dataSource = new MatTableDataSource<exportUser>(this.ELEMENT_DATA);
 
+    //Patient Allergies Table
+    ELEMENT_DATA1: exportAllergies[]=[];
+    displayedColumns1:string[]=['hospitalName','allergiesType','allergen','reaction','action'];
+    dataSource1 = new MatTableDataSource<exportAllergies>(this.ELEMENT_DATA1);
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private router:Router,public snackBar: MatSnackBar,public doctorService:DoctorService,private userService:UserService,public dialog: MatDialog) { }
+
+  constructor(public snackBar: MatSnackBar,public doctorService:DoctorService,private userService:UserService,public dialog: MatDialog) { }
   valid=true;
   show=false;
   error:any;
@@ -117,6 +125,7 @@ export class SearchPatientComponent implements OnInit {
               this.getPatientHospitalVisit();
               this.getPatientHospitalAdmit();
               this.getMedicineMonthlyCount();
+              this.getAllergies();
               this.show=true;
               
             }else{
@@ -299,6 +308,55 @@ onEdit(element:any){
    });
  }
 
+     //  get Allergies
+getAllergies(){
+  this.userService.getAllergies().subscribe((res:any) => {
+    console.log(res)
+    this.dataSource1.data=res as exportAllergies[];
+      this.dataSource1.paginator = this.paginator;
+  });
+}
 
+//Patient Allergies Filter
+applyFilter1(event:Event){
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource1.filter = filterValue.trim().toLowerCase();
+}
+
+viewAllergies(data:any){
+  this.userService.setDataAllergiesForm(data);
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus=true;
+  dialogConfig.width="50%"
+  const dialogRef = this.dialog.open(AllergiesFormComponent,dialogConfig);
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    if(result==true){
+      this.snackBar.open('New Record are save','Done',{
+        duration:2000,
+      });
+      this.getAllergies();
+    }
+  });
+ }
+
+
+ addAllergies(){
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus=true;
+  dialogConfig.width="50%"
+  const dialogRef = this.dialog.open(AllergiesFormComponent,dialogConfig);
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+    if(result==true){
+      this.snackBar.open('New Record are save','Done',{
+        duration:2000,
+      });
+      this.getAllergies();
+    }
+  });
+ }
 
 }

@@ -85,4 +85,14 @@ export class StaffService {
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.get(url,{headers, responseType: 'json' });
   }
+
+   
+   getStaffDateBetween(fromDate:any,toDate:any){
+    let email = localStorage.getItem("username");
+    let url = server_addr + '/findStaff/'+ fromDate +'/'+ toDate;
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
 }

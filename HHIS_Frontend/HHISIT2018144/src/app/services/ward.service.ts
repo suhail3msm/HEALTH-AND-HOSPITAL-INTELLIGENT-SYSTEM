@@ -132,7 +132,14 @@ export class WardService {
       const headers=new HttpHeaders().set("Authorization",tokenStr);
       return this.http.delete(url,{headers, responseType: 'json' });
     }
-
+     // delete ward section By WardId
+     deleteWardSectionByWard(data:any){
+        let url = server_addr + '/deletewardSectionByWard/' + data;
+        let token = localStorage.getItem('token');
+        let tokenStr='Bearer '+token;
+        const headers=new HttpHeaders().set("Authorization",tokenStr);
+        return this.http.delete(url,{headers, responseType: 'json' });
+      }
   //update ward details
   updateward(data:any){
     let url = server_addr + '/updateWardDetails';

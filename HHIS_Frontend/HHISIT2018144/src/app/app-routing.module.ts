@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuardGuard } from './auth-guard.guard';
@@ -14,6 +14,14 @@ import { AccountTableComponent } from './Hospital/Accounts/account-table/account
 import { PrescriptionTableComponent } from './Doctor/prescription-table/prescription-table.component';
 import { SearchPatientComponent } from './Doctor/search-patient/search-patient.component';
 import { UserDashboardComponent } from './userDetails/user-dashboard/user-dashboard.component';
+import { HospitalAppointmentsComponent } from './Hospital/hospital-appointments/hospital-appointments.component';
+import { DoctorAppointmentComponent } from './Doctor/doctor-appointment/doctor-appointment.component';
+import { StaffReportComponent } from './report/staff-report/staff-report.component';
+import { DoctorReportComponent } from './report/doctor-report/doctor-report.component';
+import { WardReportComponent } from './report/ward-report/ward-report.component';
+import { PatientReportComponent } from './report/patient-report/patient-report.component';
+import { PharmacyReportComponent } from './report/pharmacy-report/pharmacy-report.component';
+import { AllReportComponent } from './report/all-report/all-report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
@@ -31,9 +39,12 @@ const routes: Routes = [
     {path:  'das/prescription',canActivate:[AuthGuardGuard],component:PrescriptionTableComponent, data: {
       role: 'doctor'
     }},
+    {path: 'das/appointment', canActivate:[AuthGuardGuard],component:HospitalAppointmentsComponent},
     {path:  'das/searchPatient',canActivate:[AuthGuardGuard],component:SearchPatientComponent},
     {path:  'das/account',canActivate:[AuthGuardGuard],component:AccountTableComponent},
-    
+    {path: 'das/doctorAppointment',canActivate:[AuthGuardGuard],component:DoctorAppointmentComponent},
+
+    {path: 'das/allReport',canActivate:[AuthGuardGuard],component:AllReportComponent},
   ]},
 
 ];

@@ -9,11 +9,14 @@
     <mat-icon >dashboard</mat-icon> Dashboard
   </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/prescription" *ngIf="role=='doctor'"> <mat-icon>fingerprint</mat-icon> Prescription </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/searchPatient" *ngIf="role=='doctor'"> <mat-icon>search</mat-icon> Prescription </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/searchPatient" *ngIf="role=='doctor'"> <mat-icon>search</mat-icon> Search Patient </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/staff" *ngIf="role=='hospital' || role=='admin'"> <mat-icon>person_add</mat-icon> Staff </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/doctor"*ngIf="role=='hospital' || role=='admin'"> <mat-icon >bubble_chart</mat-icon>Add Doctor </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/doctorAppointment" *ngIf="role=='doctor'"> <mat-icon>date_range</mat-icon> Appointments </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/ward" *ngIf="role=='hospital' || role=='admin' || role=='doctor' || role=='nurse'"> <mat-icon> business</mat-icon> Ward </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/pharmacy" *ngIf="role=='hospital' || role=='admin' || role=='pharmacist'"> <mat-icon>add_to_queue</mat-icon> Pharmacy </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/appointment" *ngIf="role=='hospital' || role=='admin' || role=='nurse'"> <mat-icon>date_range</mat-icon> Appointments </a>
   <a mat-list-item routerLinkActive="list-item-active" routerLink="das/account" *ngIf="role=='hospital' || role=='admin'"> <mat-icon>group_add</mat-icon>Account</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="das/allReport" *ngIf="role=='hospital' || role=='admin'"> <mat-icon>report</mat-icon>Report </a>
   <a mat-list-item (click)=logout()> <mat-icon>logout</mat-icon> Logout </a>
 </mat-nav-list>

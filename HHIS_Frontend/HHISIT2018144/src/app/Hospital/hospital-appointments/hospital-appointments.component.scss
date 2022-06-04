@@ -1,0 +1,21 @@
+.staffTable {
+    margin: 0px auto;
+      width: 95%;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.589);
+    }
+  .staffTableTop{
+      width: 95%;
+  }
+  th{
+    font-size: bold;
+    color: #6575eb;
+    background-color: #dde2f4d5;
+  }
+  mat-paginator{
+    font-size: bold;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  }
+
+  .btnSch button{
+    margin-left: 5px;
+  }

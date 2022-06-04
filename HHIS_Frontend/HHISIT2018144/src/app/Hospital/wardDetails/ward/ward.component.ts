@@ -170,7 +170,11 @@ onViewDischargePatient(data:any):void{
 
 onDelete(element:any){
   this.service.deleteWardById(element.id).subscribe(res=>{
+    
     this.get_ward();
+  })
+  this.service.deleteWardSectionByWard(element.id).subscribe(res=>{
+    console.log(res);
   })
 }
 

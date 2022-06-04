@@ -9,6 +9,7 @@ import { DoctorService } from 'src/app/services/doctor.service';
 import { PharmacyService } from 'src/app/services/pharmacy.service';
 import { DoctorPrescriptionComponent } from '../doctor-prescription/doctor-prescription.component';
 
+
  
 
 @Component({
@@ -22,7 +23,7 @@ export class PrescriptionTableComponent implements OnInit {
 
 
   ELEMENT_DATA: exportUser[]=[];
-  displayedColumns:string[]=['patientName','patientNic','descrDate','status','action'];
+  displayedColumns:string[]=['patientNic','disease','descrDate','status','action'];
   dataSource = new MatTableDataSource<exportUser>(this.ELEMENT_DATA);
  
   @ViewChild(MatPaginator)
@@ -168,5 +169,6 @@ export class PrescriptionTableComponent implements OnInit {
       
     });
   }
+
 
 }

@@ -1,0 +1,84 @@
+
+<div class="row justify-content-between text-left">
+    <div class="form-group col-sm-8 flex-column d-flex">   <h2 mat-dialog-title>Allergies</h2></div>
+    <div class="form-group col-sm-4 flex-column d-flex"> 
+        <button  mat-raised-button color="warn"[mat-dialog-close]>X</button> </div>
+</div>
+
+
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup] = "userService.allergies" (submit)="onSubmit()" class="form-card example-form">
+            
+        <div class="row justify-content-between text-left">
+             <div class="form-group col-md-6">
+                 <mat-form-field class="example-full-width" appearance="fill">
+                     <mat-label>Allergies Type</mat-label>
+                     <input type="text" matInput formControlName="allergiesType" >
+                     <mat-error *ngIf="userService.allergies.controls['allergiesType']">
+                        Please enter a <strong>valid</strong> allergiesTyp
+                     </mat-error>
+                   </mat-form-field>
+             </div>
+             <div class="form-group col-md-6">
+                 
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Allergen</mat-label>
+                    <input type="text" matInput formControlName="allergen" >
+                    <mat-error *ngIf="userService.allergies.controls['allergen']">
+                       Please enter a <strong>valid</strong> allergen
+                    </mat-error>
+                  </mat-form-field>
+                    
+             </div>
+        </div>
+        <div class="row justify-content-between text-left">
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Reaction</mat-label>
+                    <input type="text" matInput formControlName="reaction" >
+                    <mat-error *ngIf="userService.allergies.controls['reaction']">
+                       Please enter a <strong>valid</strong> reaction
+                    </mat-error>
+                  </mat-form-field>
+            </div>
+            <div class="form-group col-md-6">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Insert Date</mat-label>
+                    <input type="date" matInput formControlName="insertDate" >
+                    <mat-error *ngIf="userService.allergies.controls['insertDate']">
+                       Please enter a <strong>valid</strong> insertDate
+                    </mat-error>
+                  </mat-form-field>
+                  
+            </div>
+       </div>
+       
+   
+        <!-- <div class="form-group col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill" *ngIf="role=='hospital' || role=='admin' || role =='nurse'">
+                <mat-label>Select Doctor</mat-label>
+                <mat-select formControlName="doctorEmail">
+                  <mat-option *ngFor="let user of Users" value="{{user.email}}">{{user.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="userService.allergies.controls['doctorEmail']">
+                    Select Doctor is <strong>Request</strong>
+                 </mat-error>  
+            </mat-form-field>
+        </div> -->
+   
+
+<input type="hidden" formControlName="id">
+
+        <div class="row justify-content-between text-left" *ngIf="role=='doctor' || role =='nurse'">
+            <div class="form-group col-md-6 flex-column d-flex" >   
+                <button  mat-raised-button color="warn"[mat-dialog-close]>Cancel</button> 
+            </div>
+            <div class="form-group col-md-6 flex-column d-flex"> 
+                <button type="submit" mat-raised-button color="primary"  [mat-dialog-close]="true"  >Update allergies</button> 
+            </div>
+        </div>
+         
+     </form>
+</mat-dialog-content>
+

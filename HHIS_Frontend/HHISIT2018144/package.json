@@ -25,6 +25,7 @@
     "angular-particle": "^1.0.4",
     "angular-particle-updated": "^1.0.4-1",
     "chart.js": "^3.7.1",
+    "jspdf": "^2.5.1",
     "ng-particles": "^2.43.1",
     "ng2-charts": "^3.0.9",
     "rxjs": "~6.6.0",

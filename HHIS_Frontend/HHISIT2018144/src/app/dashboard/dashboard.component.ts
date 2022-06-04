@@ -123,7 +123,6 @@ export class DashboardComponent implements OnInit {
       this.totalStaff=res;
       console.log(res);
       this.nurse_practitioners=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="nurse practitioners");
-      
       this.enrolled_nurses=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="enrolled nurses");
       this.registered_nurses=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="registered nurses");
       this.pharmacists=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="pharmacists");
@@ -133,6 +132,7 @@ export class DashboardComponent implements OnInit {
       this.clinical_assistants=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="clinical assistants");
       this.porters=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="porters");
       this. ward_clerks=res.filter((staffRole:{staffRole:string;}) => staffRole.staffRole=="ward clerks");
+      
       this. totalMaleStaff=res.filter((gender:{gender:string;}) => gender.gender=="male");
       this. totalFemaleStaff=res.filter((gender:{gender:string;}) => gender.gender=="female");
       this.staffChart = {
@@ -183,7 +183,7 @@ export class DashboardComponent implements OnInit {
 
   getWardPatientByEmail(){
     this.WardService.getWardPatientBy().subscribe((res:any)=>{
-      this.totalAdmitPatients=res.filter((status:{status:string}) => status.status=="no");
+      this.totalAdmitPatients=res.filter((status:{status:string}) => status.status!="no");
     })
   }
 

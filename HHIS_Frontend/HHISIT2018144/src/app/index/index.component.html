@@ -2,8 +2,8 @@
 <div class="i_section">
     <div class="row ">
         <div class="col-md-3 i_first">
-            <h1 style="text-align: center;font-size: 58px;color: white;letter-spacing: 10px;font-weight: bold;margin-top: 10px;">H <span style="font-size: 48px;">HI</span> S</h1>
-            <p style="text-align: center;color: rgb(223, 223, 223);">HEALTH AND HOSPITAL INTELLIGENT SYSTEM</p>
+            <h1 style="text-align: center;font-size: 58px;color: white;letter-spacing: 10px;font-weight: bold;margin-top: 10px;">H <span style="font-size: 48px;">HS</span> S</h1>
+            <p style="text-align: center;color: rgb(223, 223, 223);">HEALTH AND HOSPITAL SMART SYSTEM</p>
             <div class="hos_img">
                 <img src="../assets/image/hos1.png" alt="">
             </div>
@@ -35,8 +35,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-5 bx">Doctor Registration
-                        <h1><i class="fas fa-user-md"></i></h1>
+                    <div class="col-md-5 bx" >Total Registered Hospitals
+                        <h1><i>{{totalHospital?.length}}</i></h1>
+                    </div>
+                    <div class="col-md-5 bx" style=" background-image: linear-gradient(to left, rgb(222, 106, 254),
+                    rgb(119, 0, 109));">Total Registered Users
+                        <h1><i>{{totalUser?.length}}</i></h1>
                     </div>
                 </div>
             </div>

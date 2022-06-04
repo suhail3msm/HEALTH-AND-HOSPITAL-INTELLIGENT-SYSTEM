@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { exportHospital } from '../classes/exportHospital';
 import { StaffModel } from '../Hospital/staffDetails/staff-form/staff-form.component';
 
 const server_addr = "http://localhost:8082";
@@ -152,6 +153,24 @@ export class HhisServiceService {
     let tokenStr='Bearer '+token;
     const headers=new HttpHeaders().set("Authorization",tokenStr);
     return this.http.delete(url,{headers, responseType: 'json' });
+  }
+
+  getAllHospitalRecords(){
+    let url = server_addr + '/getHospitalAll';
+    let token = localStorage.getItem('token');
+    let tokenStr='Bearer '+token;
+    const headers=new HttpHeaders().set("Authorization",tokenStr);
+    return this.http.get(url,{headers, responseType: 'json' });
+  }
+
+  getAllHospitalCount(){
+    let url = server_addr + '/totalHospital';
+    return this.http.get(url);
+  }
+
+  getAllUserCount(){
+    let url = server_addr + '/totalUser';
+    return this.http.get(url);
   }
 
 }

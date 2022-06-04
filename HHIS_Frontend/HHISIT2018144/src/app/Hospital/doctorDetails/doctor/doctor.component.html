@@ -1,15 +1,97 @@
 <br>
+<div id="htmlData">
 <div class="container staffTableTop">
   <div class="row">
-    <div class="col-sm-6">
-      <button style="margin-top: 15px; margin-right: 2px; width: 60%;" mat-raised-button (click)="openDialog()">Create <mat-icon>queue</mat-icon></button>
+    <div class="col-sm-4">
+      <button style="width: 100%;" mat-raised-button (click)="openDialog()">Create <mat-icon>queue</mat-icon></button>
     </div>
-    <div class="col-sm-6">
-      <mat-form-field fxFlex="100%">
-        <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" >
-      </mat-form-field>
+    <div class="col-sm-8">
+      <h1 style="text-align:center;padding: 5px; background-color: rgb(2, 73, 160);color: #fff;">Doctor Details</h1>
     </div>
   </div>
+<<div class="row">
+  <div class="col-sm-4">
+      
+    <mat-form-field appearance="legacy" >
+      <mat-label>Search Joint Date Range</mat-label>
+      <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange" >
+        <input matStartDate formControlName="start"  placeholder="Start Date">
+        <input matEndDate formControlName="end" (dateChange)="listStaffDateBtwn()" placeholder="End Date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+    <br>
+    <select (change)="onRoleChange($event)">
+      <option value="">Search doctor Specialty</option>
+      <option value="Allergists">Allergists</option>
+      <option value="Dermatologists">Dermatologists</option>
+      <option value="Infectious disease doctors">Infectious disease doctors</option>
+      <option value="Ophthalmologists">Ophthalmologists</option>
+      <option value="Obstetrician/gynecologists">Obstetrician/gynecologists</option>
+      <option value="Cardiologists">Cardiologists</option>
+      <option value="Endocrinologists">Endocrinologists</option>
+      <option value="Dermatologists">Dermatologists</option>
+      <option value="Gastroenterologists">Gastroenterologists</option>
+      <option value="Nephrologists">Nephrologists</option>
+      <option value="Urologists">Urologists</option>
+      <option value="Pulmonologists">Pulmonologists</option>
+      <option value="Otolaryngologists">Otolaryngologists</option>
+      <option value="Neurologists">Neurologists</option>
+      <option value="Psychiatrists">Psychiatrists</option>
+      <option value="Oncologists">Oncologists</option>
+      <option value="Radiologists">Radiologists</option>
+      <option value="Rheumatologists">Rheumatologists</option>
+      <option value="General surgeons">General surgeons</option>
+      <option value="Orthopedic surgeons">Orthopedic surgeons</option>
+      <option value="Cardiac surgeons">Cardiac surgeons</option>
+      <option value="Anesthesiologists">Anesthesiologists</option>
+    </select>
+  </div>
+  <div class="col-sm-4">
+    <mat-form-field fxFlex="100%">
+      <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter" >
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-sm-4">
+    <br>
+    <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+      <div class="col-md-12 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(177, 161, 241) 95%,
+      rgb(41, 7, 113) 50%); border-radius: 5px;">
+        <p>Total Male</p>
+        <i style="font-size: 25px; " class="fas fa-male"></i>
+        <h4>{{totalMale}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <br>
+    <div class="row justify-content-between text-left" style="width: 95%; margin:0% auto;">
+      <div class="col-md-12 " style=" padding-top: 5px; text-align: center; color: rgba(27, 27, 27, 0.759); background-image: linear-gradient(-90deg, rgb(229, 161, 241) 95%,
+      rgb(113, 7, 106) 50%); border-radius: 5px;">
+        <p>Total Male</p>
+        <i style="font-size: 25px; " class="fas fa-female"></i>
+        <h4>{{totalFemale}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <br>
+    <select (change)="onGenderChange($event)">
+      <option value="">Search Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <br>
+    <br><br>
+    <button mat-raised-button color="primary"(click)="openPDF()"><i class="fas fa-download"></i> Generate Report</button>
+  </div>
+</div>
 </div>
 <br>
 
@@ -81,3 +163,39 @@
   aria-label="Select page of periodic elements" class="staffTable">
 </mat-paginator>
   
+<br>
+<br>
+<div class="container staffTableTop"
+style="background-color: black; color:#fff;padding: 10px;">
+  <div class="row">
+   <div class="col-sm-4">
+      <p> Allergists: <b>{{ Allergists?.length}}</b></p>
+      <p>Dermatologists: <b>{{Dermatologists?.length}}</b></p>
+      <p>Infectious disease doctors: <b>{{Infectious_disease_doctors?.length}}</b></p>
+      <p>Ophthalmologists: <b>{{Ophthalmologists?.length}}</b></p>
+       <p>Obstetrician: <b>{{Obstetrician?.length}}</b></p>
+       <p>Cardiac_surgeons: <b>{{Cardiac_surgeons?.length}}</b></p>
+       <p>Anesthesiologists: <b>{{Anesthesiologists?.length}}</b></p>
+     
+   </div>
+   <div class="col-sm-4">
+    <p> Cardiologists: <b>{{ Cardiologists?.length}}</b></p>
+    <p>Endocrinologists: <b>{{Endocrinologists?.length}}</b></p>
+    <p>Gastroenterologists: <b>{{Gastroenterologists?.length}}</b></p>
+    <p>Nephrologists: <b>{{Nephrologists?.length}}</b></p>
+     <p>Urologists: <b>{{Urologists?.length}}</b></p>
+     <p>General_surgeons: <b>{{General_surgeons?.length}}</b></p>
+     <p>Orthopedic_surgeons: <b>{{Orthopedic_surgeons?.length}}</b></p>
+  </div>
+   <div class="col-sm-4">
+    <p>Pulmonologists: <b>{{Pulmonologists?.length}}</b></p>
+    <p>Otolaryngologists: <b>{{Otolaryngologists?.length}}</b></p>
+    <p>Neurologists: <b>{{Neurologists?.length}}</b></p>
+    <p>Psychiatrists: <b>{{Psychiatrists?.length}}</b></p>
+    <p>Oncologists: <b>{{Oncologists?.length}}</b></p>
+    <p>Radiologists: <b>{{Radiologists?.length}}</b></p>
+    <p>Rheumatologists: <b>{{Rheumatologists?.length}}</b></p>
+  </div>
+  </div>
+</div>
+</div>
